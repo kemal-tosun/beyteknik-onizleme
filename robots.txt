@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /araclar/
+Disallow: /belge/
+Disallow: /teklif.php
+Disallow: /efektler.html
+
+Sitemap: https://beyteknik.com/sitemap.xml

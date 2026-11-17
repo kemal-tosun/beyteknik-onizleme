@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efekt Vitrini · BeyTeknik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#05070d;--navy:#0b1222;--steel:#141c2e;--line:rgba(255,255,255,.09);--line2:rgba(255,255,255,.16);
+  --amber:#FFB23F;--orange:#FF7A1A;--gold:#FFD27A;--warm:linear-gradient(135deg,#FFD27A 0%,#FFB23F 45%,#FF7A1A 100%);
+  --txt:#EEF0F5;--mute:#8B93A7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--night)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--txt);background:var(--night);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.wrap{width:min(1120px,100% - 32px);margin:0 auto}
+.serif{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
+
+/* üst */
+.top{padding:72px 0 40px;text-align:center}
+.top small{letter-spacing:.3em;text-transform:uppercase;color:var(--amber);font-size:.75rem}
+.top h1{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:300;margin:14px 0 12px;line-height:1.05}
+.top p{color:var(--mute);max-width:560px;margin:0 auto;line-height:1.6}
+
+/* bölüm kalıbı */
+.fx{border-top:1px solid var(--line);padding:72px 0}
+.fx-head{display:flex;gap:18px;align-items:baseline;margin-bottom:28px;flex-wrap:wrap}
+.fx-no{font-size:.8rem;color:var(--night);background:var(--warm);border-radius:99px;padding:4px 12px;font-weight:700}
+.fx-head h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:500}
+.fx-head span{color:var(--mute);font-size:.95rem;flex-basis:100%}
+.stage{position:relative;border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,var(--navy),var(--night) 70%);overflow:hidden;min-height:340px;display:grid;place-items:center;padding:40px 24px}
+.again{position:absolute;right:16px;bottom:16px;font:500 .8rem Outfit;color:var(--mute);background:none;border:1px solid var(--line2);border-radius:99px;padding:7px 14px;cursor:pointer}
+.again:hover{color:var(--txt);border-color:var(--amber)}
+
+/* 1 harf harf başlık */
+.split{font-size:clamp(2.2rem,7vw,5.4rem);font-weight:200;line-height:1.05;text-align:center}
+.split .ch{display:inline-block;will-change:transform}
+.split .mask{display:inline-block;overflow:hidden;vertical-align:bottom}
+.split b{font-weight:700;background:var(--warm);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* 2 ışık süpüren yazı */
+.shiny{font-size:clamp(2rem,6vw,4.6rem);font-weight:700;text-align:center;line-height:1.1;
+  background:linear-gradient(110deg,#5b6377 0%,#5b6377 40%,#fff6e0 50%,#5b6377 60%,#5b6377 100%);background-size:250% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 3.2s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
+
+/* 3 spot ışıklı kartlar */
+.spots{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;width:100%}
+.spot{position:relative;border:1px solid var(--line2);border-radius:22px;padding:28px;background:var(--steel);overflow:hidden;--x:50%;--y:50%}
+.spot::before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--x) var(--y),rgba(255,178,63,.28),transparent 60%);opacity:0;transition:opacity .4s}
+.spot:hover::before{opacity:1}
+.spot h3{position:relative;font-weight:500;font-size:1.25rem;margin-bottom:8px}
+.spot p{position:relative;color:var(--mute);line-height:1.55;font-size:.95rem}
+.spot .ic{position:relative;width:42px;height:42px;border-radius:12px;background:rgba(255,178,63,.12);display:grid;place-items:center;margin-bottom:18px;color:var(--amber);font-size:1.3rem}
+
+/* 4 ışık huzmeleri */
+.rays{min-height:460px}
+.rays .beam{position:absolute;top:-20%;left:50%;width:140px;height:140%;transform-origin:50% 0;
+  background:linear-gradient(180deg,rgba(255,210,122,.55),rgba(255,178,63,.08) 55%,transparent 80%);filter:blur(18px);mix-blend-mode:screen;pointer-events:none}
+.rays .lamp{position:absolute;top:-8px;left:50%;width:120px;height:16px;margin-left:-60px;border-radius:0 0 60px 60px;background:#fff3d6;box-shadow:0 0 40px 14px rgba(255,200,110,.7)}
+.rays .rt{position:relative;text-align:center;z-index:2}
+.rays .rt h3{font-size:clamp(1.8rem,5vw,3.4rem);font-weight:300}
+.rays .rt p{color:var(--mute);margin-top:10px}
+
+/* 5 mıknatıs buton */
+.mag-row{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.mag{position:relative;display:inline-flex;align-items:center;gap:10px;font:600 1.05rem Outfit;color:var(--night);background:var(--warm);border:0;border-radius:99px;padding:18px 34px;cursor:pointer;box-shadow:0 10px 40px -10px rgba(255,140,40,.7)}
+.mag.ghost{background:transparent;color:var(--txt);border:1px solid var(--line2);box-shadow:none}
+.mag span{display:inline-block;pointer-events:none}
+
+/* 6 sayaç */
+.counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;width:100%;text-align:center}
+.counts .n{font-size:clamp(2.4rem,6vw,4rem);font-weight:200;background:var(--warm);-webkit-background-clip:text;background-clip:text;color:transparent}
+.counts .l{color:var(--mute);margin-top:4px;font-size:.95rem}
+
+/* 7 eğilen ürün kartı + parıltı */
+.tilts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;width:100%;perspective:1200px}
+.tilt{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line2);background:var(--steel);transform-style:preserve-3d;cursor:pointer}
+.tilt img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.tilt .cap{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(5,7,13,.92))}
+.tilt .cap b{display:block;font-weight:500;font-size:1.15rem}
+.tilt .cap i{font-style:normal;color:var(--amber);font-size:.85rem}
+.tilt .glare{position:absolute;inset:0;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,240,210,.35),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none;mix-blend-mode:overlay}
+.tilt:hover .glare{opacity:1}
+
+/* 8 kaydırınca yanan kelimeler */
+.reveal{font-size:clamp(1.5rem,3.6vw,2.6rem);line-height:1.35;font-weight:300;max-width:880px;text-align:left}
+.reveal .w{opacity:.14;transition:none}
+.reveal .w.hl{color:var(--amber)}
+
+/* 9 tıklama kıvılcımı */
+.spark-zone{cursor:crosshair;user-select:none}
+.spark-zone p{color:var(--mute);font-size:1.1rem;text-align:center;pointer-events:none}
+.spark-zone p b{display:block;color:var(--txt);font-size:clamp(1.5rem,4vw,2.4rem);font-weight:300;margin-bottom:8px}
+.spark{position:absolute;width:3px;height:14px;border-radius:2px;background:var(--gold);pointer-events:none;box-shadow:0 0 8px var(--amber)}
+
+/* 10 açılıp kararan şerit */
+.strip{display:flex;gap:10px;width:100%;height:380px}
+.strip .it{position:relative;flex:1;border-radius:20px;overflow:hidden;transition:flex .7s cubic-bezier(.25,.46,.45,.94);cursor:pointer;border:1px solid var(--line)}
+.strip .it img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.6);transition:filter .7s}
+.strip .it span{position:absolute;left:18px;bottom:16px;font-weight:500;white-space:nowrap;opacity:0;transition:opacity .4s}
+.strip .it.on{flex:4}
+.strip .it.on img{filter:brightness(1) saturate(1)}
+.strip .it.on span{opacity:1;transition-delay:.3s}
+
+.end{padding:60px 0 90px;text-align:center;color:var(--mute);border-top:1px solid var(--line)}
+@media (max-width:640px){.strip{flex-direction:column;height:560px}.fx{padding:56px 0}}
+@media (prefers-reduced-motion:reduce){.shiny{animation:none;color:var(--txt)}}
+</style>
+</head>
+<body>
+
+<header class="top wrap">
+  <small>BeyTeknik · Efekt vitrini</small>
+  <h1>Siteye koyabileceğimiz <span class="serif">10 efekt</span></h1>
+  <p>Her efekt aydınlatma firmasına göre ayarlandı. Fareyle üstlerine gel, tıkla, kaydır. Beğendiklerinin numarasını söylemen yeterli.</p>
+</header>
+
+<main class="wrap">
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">1</em><h2>Harf harf yükselen başlık</h2><span>Sayfa açılınca ana başlık harf harf aşağıdan yükselir. İlk izlenim için.</span></div>
+  <div class="stage"><h3 class="split" id="split">Şehre <b>ışık</b> tasarlıyoruz</h3><button class="again" data-again="split">Tekrar oynat</button></div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">2</em><h2>Işık süpüren yazı</h2><span>Yazının üstünden sürekli bir ışık geçer. Slogan ya da kampanya başlığı için.</span></div>
+  <div class="stage"><h3 class="shiny">2008'den beri Bursa'dan</h3></div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">3</em><h2>Fareyi takip eden spot ışığı</h2><span>Kartın üstünde gezdikçe fare bir el feneri gibi kartı aydınlatır. Hizmetler bölümü için.</span></div>
+  <div class="stage">
+    <div class="spots">
+      <div class="spot"><div class="ic">✦</div><h3>Tasarım</h3><p>Her projeye özel direk ve armatür çizimi.</p></div>
+      <div class="spot"><div class="ic">⚙</div><h3>Üretim</h3><p>Kendi fabrikamızda, kendi ustalarımızla.</p></div>
+      <div class="spot"><div class="ic">◎</div><h3>Montaj</h3><p>Sahada kurulum ve teslim sonrası destek.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">4</em><h2>Sallanan ışık huzmeleri</h2><span>Yukarıdaki lambadan aşağı yumuşakça salınan ışık. Giriş bölümünün arka planı için.</span></div>
+  <div class="stage rays" id="rays">
+    <div class="lamp"></div>
+    <div class="beam"></div><div class="beam"></div><div class="beam"></div><div class="beam"></div><div class="beam"></div>
+    <div class="rt"><h3>Karanlığa <span class="serif">imza</span> atın</h3><p>Park, cadde ve meydanlar için aydınlatma</p></div>
+  </div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">5</em><h2>Mıknatıslı buton</h2><span>Fare yaklaşınca buton fareye doğru çekilir. "Teklif al" gibi ana butonlar için.</span></div>
+  <div class="stage"><div class="mag-row"><button class="mag"><span>Teklif alın →</span></button><button class="mag ghost"><span>Kataloğu indir</span></button></div></div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">6</em><h2>Yukarı sayan rakamlar</h2><span>Bölüme gelince rakamlar sıfırdan sayarak dolar. Güven bölümü için.</span></div>
+  <div class="stage">
+    <div class="counts" id="counts">
+      <div><div class="n" data-to="2000" data-s=" m²">0</div><div class="l">Kapalı üretim alanı</div></div>
+      <div><div class="n" data-to="18" data-s="+">0</div><div class="l">Belediye</div></div>
+      <div><div class="n" data-to="13" data-s="+">0</div><div class="l">İnşaat firması</div></div>
+      <div><div class="n" data-to="3" data-s="+">0</div><div class="l">Ülkeye ihracat</div></div>
+    </div>
+    <button class="again" data-again="counts">Tekrar oynat</button>
+  </div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">7</em><h2>Eğilen ve parlayan ürün kartı</h2><span>Kart fareye göre üç boyutlu eğilir, üstünde metal parıltısı gezer. Ürün vitrini için.</span></div>
+  <div class="stage">
+    <div class="tilts">
+      <div class="tilt"><img src="img/aile_modern.webp" alt="Modern direk"><div class="glare"></div><div class="cap"><i>Seri 01</i><b>Modern Direkler</b></div></div>
+      <div class="tilt"><img src="img/aile_meydan.webp" alt="Meydan aydınlatması"><div class="glare"></div><div class="cap"><i>Seri 02</i><b>Meydan Serisi</b></div></div>
+      <div class="tilt"><img src="img/aile_bollard.webp" alt="Bollard"><div class="glare"></div><div class="cap"><i>Seri 03</i><b>Bollardlar</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">8</em><h2>Kaydırdıkça yanan cümle</h2><span>Aşağı indikçe kelimeler sırayla aydınlanır, sanki ışık yazının üstünden geçiyor. Hakkımızda bölümü için.</span></div>
+  <div class="stage"><p class="reveal" id="reveal">Biz direk satmıyoruz. Bir parkta akşam yürüyüşünü, bir meydanda geç saatte buluşmayı, bir caddede güvenle eve dönmeyi tasarlıyoruz. Her ürünü kendi fabrikamızda üretiyor ve şehrinize <span class="hl-src">ışık</span> taşıyoruz.</p></div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">9</em><h2>Tıklayınca kıvılcım</h2><span>Nereye tıklarsan oradan küçük ışık kıvılcımları saçılır. Sayfanın tamamına eklenebilir.</span></div>
+  <div class="stage spark-zone" id="sparkzone"><p><b>Buraya tıkla</b>Birkaç kez dene</p></div>
+</section>
+
+<section class="fx">
+  <div class="fx-head"><em class="fx-no">10</em><h2>Açılıp aydınlanan şerit</h2><span>Fareyle üstüne gelinen fotoğraf genişler ve ışığı yanar, diğerleri karanlıkta kalır. Referans projeler için.</span></div>
+  <div class="stage">
+    <div class="strip" id="strip">
+      <div class="it on"><img src="img/aile_meydan.webp" alt=""><span>Meydan projesi</span></div>
+      <div class="it"><img src="img/aile_yol.webp" alt=""><span>Cadde aydınlatması</span></div>
+      <div class="it"><img src="img/sehir.jpg" alt=""><span>Şehir merkezi</span></div>
+      <div class="it"><img src="img/aile_bollard.webp" alt=""><span>Park yolu</span></div>
+      <div class="it"><img src="img/aile_modern.webp" alt=""><span>Yaşam alanı</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="end wrap">Beğendiklerinin numarasını yaz, siteye ve site yapan yardımcıya ekleyeyim.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* yumuşak kaydırma */
+if(!RM&&typeof Lenis!=='undefined'){
+  const lenis=new Lenis({lerp:.09,smoothWheel:true});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+}
+
+/* 1 harf harf */
+(()=>{const h=$('#split');
+  [...h.childNodes].forEach(n=>{
+    const bold=n.nodeType===1, txt=n.textContent, frag=document.createDocumentFragment();
+    txt.split(/(\s+)/).forEach(word=>{
+      if(!word)return;
+      if(/^\s+$/.test(word)){frag.appendChild(document.createTextNode(' '));return}
+      const m=document.createElement('span');m.className='mask';
+      [...word].forEach(c=>{const s=document.createElement('span');s.className='ch';s.textContent=c;m.appendChild(s)});
+      if(bold){const b=document.createElement('b');b.appendChild(m);frag.appendChild(b)}else frag.appendChild(m);
+    });
+    h.replaceChild(frag,n);
+  });
+  const play=()=>gsap.fromTo('#split .ch',{yPercent:115,opacity:0},{yPercent:0,opacity:1,duration:1,ease:'power4.out',stagger:.04});
+  ScrollTrigger.create({trigger:h,start:'top 80%',once:true,onEnter:play});
+  window.fx1=play;
+})();
+
+/* 3 spot */
+$$('.spot').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();
+  c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')}));
+
+/* 4 huzmeler */
+(()=>{const bs=$$('#rays .beam'),ang=[-34,-17,0,17,34];
+  bs.forEach((b,i)=>{gsap.set(b,{xPercent:-50,rotate:ang[i],opacity:.35+Math.random()*.3,scaleX:.6+Math.random()*.8});
+    if(!RM)gsap.to(b,{rotate:ang[i]+gsap.utils.random(-8,8),opacity:gsap.utils.random(.25,.8),duration:gsap.utils.random(3,5.5),ease:'sine.inOut',yoyo:true,repeat:-1});});
+  if(!RM)gsap.to('#rays .lamp',{boxShadow:'0 0 60px 22px rgba(255,200,110,.85)',duration:2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+})();
+
+/* 5 mıknatıs */
+if(FINE)$$('.mag').forEach(b=>{const s=b.querySelector('span');
+  b.parentElement.parentElement.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect(),
+    dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),d=Math.hypot(dx,dy);
+    if(d<140){gsap.to(b,{x:dx*.35,y:dy*.35,duration:.4,ease:'power3.out'});gsap.to(s,{x:dx*.15,y:dy*.15,duration:.4})}
+    else{gsap.to([b,s],{x:0,y:0,duration:.7,ease:'elastic.out(1,.4)'})}});
+  b.parentElement.parentElement.addEventListener('pointerleave',()=>gsap.to([b,s],{x:0,y:0,duration:.7,ease:'elastic.out(1,.4)'}));
+});
+
+/* 6 sayaç */
+const fx6=()=>$$('#counts .n').forEach(el=>{const o={v:0},to=+el.dataset.to,s=el.dataset.s||'';
+  gsap.to(o,{v:to,duration:2.2,ease:'power3.out',onUpdate:()=>el.textContent=Math.round(o.v).toLocaleString('tr-TR')+s})});
+ScrollTrigger.create({trigger:'#counts',start:'top 80%',once:true,onEnter:fx6});
+
+/* 7 eğilme + parıltı */
+if(FINE)$$('.tilt').forEach(c=>{
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    gsap.to(c,{rotateY:(x-.5)*16,rotateX:-(y-.5)*16,scale:1.03,duration:.5,ease:'power2.out'});
+    c.style.setProperty('--gx',x*100+'%');c.style.setProperty('--gy',y*100+'%')});
+  c.addEventListener('pointerleave',()=>gsap.to(c,{rotateY:0,rotateX:0,scale:1,duration:.8,ease:'power3.out'}));
+});
+
+/* 8 yanan kelimeler */
+(()=>{const p=$('#reveal');
+  p.innerHTML=p.textContent.trim().split(/\s+/).map(w=>`<span class="w${/ışık/.test(w)?' hl':''}">${w}</span>`).join(' ');
+  if(RM){gsap.set('#reveal .w',{opacity:1});return}
+  gsap.to('#reveal .w',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:p,start:'top 80%',end:'bottom 45%',scrub:true}});
+  gsap.to('#reveal .w.hl',{textShadow:'0 0 24px rgba(255,170,60,.7)',scrollTrigger:{trigger:p,start:'bottom 50%',toggleActions:'play none none reverse'}});
+})();
+
+/* 9 kıvılcım */
+$('#sparkzone').addEventListener('click',e=>{const z=e.currentTarget,r=z.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  for(let i=0;i<10;i++){const s=document.createElement('i');s.className='spark';z.appendChild(s);
+    const a=i/10*Math.PI*2+Math.random()*.3,d=50+Math.random()*40;
+    gsap.set(s,{left:x,top:y,xPercent:-50,yPercent:-50,rotate:a*180/Math.PI+90});
+    gsap.to(s,{x:Math.cos(a)*d,y:Math.sin(a)*d,scaleY:.2,opacity:0,duration:.6+Math.random()*.2,ease:'power2.out',onComplete:()=>s.remove()})}
+});
+
+/* 10 şerit */
+$$('#strip .it').forEach(it=>{const on=()=>{$$('#strip .it').forEach(o=>o.classList.toggle('on',o===it))};
+  it.addEventListener('pointerenter',on);it.addEventListener('click',on)});
+
+/* tekrar oynat */
+$$('[data-again]').forEach(b=>b.addEventListener('click',()=>b.dataset.again==='split'?window.fx1():fx6()));
+</script>
+</body>
+</html>

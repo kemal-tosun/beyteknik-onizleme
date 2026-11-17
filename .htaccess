@@ -1,0 +1,85 @@
+# BeyTeknik - araclar/seo_sayfalar.py uretir. Elle degistirme, scripti duzenle.
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+RewriteEngine On
+
+# HTTPS ve www'suz tek adres. SSL sertifikasi acik olunca bu iki satirin basindaki # isaretini kaldir.
+# RewriteCond %{HTTPS} off [OR]
+# RewriteCond %{HTTP_HOST} ^www\. [NC]
+# RewriteRule ^ https://beyteknik.com%{REQUEST_URI} [L,R=301]
+
+# yedek ve calisma dosyalari disariya kapali
+RewriteRule (^|/)[^/]*_(yedek|oncesi)[^/]*$ - [R=404,L]
+RewriteRule ^(araclar|belge)(/|$) - [R=404,L]
+RewriteRule ^efektler\.html$ - [R=404,L]
+
+# /index.html -> /
+RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# eski sitenin adresleri (Google'daki siralama korunur)
+RewriteRule ^duyuru/[^/]+/(urun|urunler)/(.+)$ /$1/$2 [R=301,L]
+RewriteRule ^duyuru/ / [R=301,L]
+RewriteRule ^(index|anasayfa)/?$ / [R=301,L]
+RewriteRule ^(hakkimizda|kalite)/?$ /#uretim [R=301,L,NE]
+RewriteRule ^(iletisim|bayilerimiz)/?$ /#teklif [R=301,L,NE]
+RewriteRule ^(referanslar|referans/.*)$ /#referanslar [R=301,L,NE]
+RewriteRule ^urun-kategorileri/?$ /#urunler [R=301,L,NE]
+RewriteRule ^(urun|urunler)/([^/]+)/en/?$ /$1/$2/ [R=301,L]
+RewriteRule ^urun/sl101/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl103/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl104/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl105/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl106/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl107/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl109/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl110/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl111/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl113/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl115/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl116/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl117/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl118/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl119/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl120/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl121/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl122/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl123/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl124/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl125/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl127/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl128/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl129/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl130/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl131/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl132/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl133/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl134/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl135/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl136/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl137/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl138/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl139/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl142/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl143/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl146/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urun/sl155/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urunler/led\-aplikler/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urunler/led\-dis\-mekan\-armaturler/?(en)?/?$ /#katalog [R=301,L,NE]
+RewriteRule ^urunler/led\-ic\-mekan\-armaturler/?(en)?/?$ /#katalog [R=301,L,NE]
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml text/xml application/xml
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/css "access plus 1 week"
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
