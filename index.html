@@ -330,10 +330,10 @@ footer{padding:5rem 0 2rem;border-top:1px solid var(--line);overflow:hidden}
 .kt-baslik .n{font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);font-weight:600}
 .kt-baslik h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-top:.3rem}
 .kt-baslik p{color:var(--mute);margin-top:.3rem}
-.kt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px}
+.kt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .kc{position:relative;border:1px solid var(--line);border-radius:1.4rem;background:linear-gradient(170deg,#0f1729,#080c17 75%);overflow:hidden;text-align:left;display:flex;flex-direction:column;transition:border-color .4s,transform .5s var(--ease)}
 .kc:hover{border-color:rgba(255,178,63,.45);transform:translateY(-4px)}
-.kc .ki{position:relative;height:280px;display:flex;align-items:flex-end;justify-content:center;padding:1.2rem 1rem 0;background:radial-gradient(120% 70% at 50% 100%,rgba(255,196,120,.35) 0%,transparent 60%),linear-gradient(180deg,#a3b0c2 0%,#7a889d 100%)}
+.kc .ki{position:relative;height:350px;display:flex;align-items:flex-end;justify-content:center;padding:1rem .6rem 0;background:radial-gradient(120% 70% at 50% 100%,rgba(255,196,120,.35) 0%,transparent 60%),linear-gradient(180deg,#a3b0c2 0%,#7a889d 100%)}
 .kc .ki:before{content:"";position:absolute;width:90%;aspect-ratio:1;left:5%;top:4%;border-radius:50%;background:radial-gradient(circle,rgba(255,178,63,.30),transparent 65%);opacity:.5;transition:opacity .5s}
 .kc:hover .ki:before{opacity:1}
 .kc .ki img{position:relative;max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(20,30,50,.35));transition:transform .6s var(--ease)}
@@ -437,6 +437,7 @@ body.km-acik{overflow:hidden}
 .lb .alt .btn:not(.pri){border:1px solid var(--line2)}
 .lb .adet b{min-width:3.2rem;color:var(--amber);font-weight:700}
 .lb .not2{color:var(--mute);font-size:.8rem;margin-top:.8rem}
+@media (max-width:1100px) and (min-width:901px){.kt-grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:900px){
   .pj-grid{grid-template-columns:1fr 1fr}
   .pj.b{grid-column:span 2;aspect-ratio:16/10}
@@ -568,9 +569,9 @@ body.km-acik{overflow:hidden}
   <div class="hs" id="hs">
     <div class="track" id="track">
       <article class="pc git" data-kat="modern" tabindex="0" role="link"><div class="num">01</div>
-        <div class="vis"><div class="halo"></div><img src="img/aile_modern.webp" alt="SL-6010 disk başlıklı modern park direği" loading="lazy"><div class="floor"></div></div>
-        <div class="info"><div class="use">Park · Bahçe · Peyzaj</div><h3>Modern Park Bahçe Direkleri</h3><p>Disk armatür, ince gövde, çizgisel formlar. Park, bahçe ve peyzaj akslarına gece de dikkat çeken modern bir imza.</p>
-          <div class="chips"><span>Disk armatür</span><span>Çizgisel form</span><span>RGB seçeneği</span><span>IP65</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
+        <div class="vis"><div class="halo"></div><img src="img/aile_modern.webp" alt="SL-2310 çizgisel gövdeli modern park direği" loading="lazy"><div class="floor"></div></div>
+        <div class="info"><div class="use">Park · Bahçe · Peyzaj</div><h3>Modern Park Bahçe Direkleri</h3><p>İnce gövde, çizgisel formlar, gövdeden süzülen ışık. Park, bahçe ve peyzaj akslarına gece de dikkat çeken modern bir imza.</p>
+          <div class="chips"><span>Çizgisel gövde</span><span>Gövdeye gömülü ışık</span><span>RGB seçeneği</span><span>IP65</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc git" data-kat="yol" tabindex="0" role="link"><div class="num">02</div>
         <div class="vis"><div class="halo"></div><img src="img/aile_yol.webp" alt="SL-5100 çift yay kollu bulvar direği" loading="lazy"><div class="floor"></div></div>
@@ -578,12 +579,12 @@ body.km-acik{overflow:hidden}
           <div class="chips"><span>Çift kollu</span><span>Asimetrik dağılım</span><span>Arma ve yazı</span><span>Özel RAL</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc git" data-kat="meydan" tabindex="0" role="link"><div class="num">03</div>
-        <div class="vis"><div class="halo"></div><img src="img/aile_meydan.webp" alt="SL-6040 üç silindirli meydan direği" loading="lazy"><div class="floor"></div></div>
+        <div class="vis"><div class="halo"></div><img src="img/aile_meydan.webp" alt="SL-6010 disk başlıklı meydan direği" loading="lazy"><div class="floor"></div></div>
         <div class="info"><div class="use">Kent meydanı · Büyük alanlar</div><h3>Meydan Direkleri</h3><p>Bir aydınlatmadan çok bir heykel. Meydanınızın simgesi olacak, dekoratif ışıklı özel formlar.</p>
           <div class="chips"><span>Heykelsi form</span><span>Dekoratif LED</span><span>Özel tasarım</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc git" data-kat="bollard" tabindex="0" role="link"><div class="num">04</div>
-        <div class="vis"><div class="halo"></div><img src="img/aile_bollard.webp" alt="SL-7090 çift pencereli bollard serisi" loading="lazy" style="max-height:72%"><div class="floor"></div></div>
+        <div class="vis"><div class="halo"></div><img src="img/aile_bollard.webp" alt="SL-7035 bollard serisi" loading="lazy" style="max-height:72%"><div class="floor"></div></div>
         <div class="info"><div class="use">Yürüyüş yolu · Peyzaj · Giriş</div><h3>Bollard</h3><p>Yolu göz kamaştırmadan gösteren alçak ışık. Beş farklı boy, tek tasarım dili.</p>
           <div class="chips"><span>Beş boy</span><span>Çift ışık penceresi</span><span>PMMA lens</span><span>Alüminyum gövde</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
@@ -948,7 +949,7 @@ mm.add('(min-width: 901px)',()=>{
   const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#hs',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true,
     onUpdate:s=>gsap.set('#hsbar',{scaleX:s.progress})}});
   $$('.pc:not(.last)').forEach(pc=>{
-    gsap.fromTo(pc.querySelector('.vis img'),{x:80,rotate:4},{x:-40,rotate:-2,ease:'none',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
+    gsap.fromTo(pc.querySelector('.vis img'),{x:80,rotate:0},{x:-40,rotate:0,ease:'none',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
     gsap.fromTo(pc.querySelector('.halo'),{opacity:.15,scale:.7},{opacity:1,scale:1,ease:'power1.out',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left 85%',end:'center center',scrub:true}});
     gsap.fromTo(pc.querySelector('.num'),{x:-60},{x:60,ease:'none',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
   });
