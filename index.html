@@ -90,6 +90,22 @@ nav ul a:hover{color:#fff;transform:translateY(-1px)}
 .btn .ar{transition:transform .4s var(--ease)}
 .btn:hover .ar{transform:translateX(4px)}
 nav .btn{padding:.7rem 1.2rem;font-size:.88rem}
+/* ürünler açılır menüsü */
+nav li.dd{position:relative}
+nav li.dd>a:after{content:"";display:inline-block;width:6px;height:6px;margin-left:.45rem;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg);transition:transform .3s var(--ease);opacity:.7}
+nav li.dd:hover>a:after,nav li.dd:focus-within>a:after{transform:translateY(0) rotate(225deg)}
+.ddm{position:absolute;left:50%;top:100%;padding-top:22px;transform:translate(-50%,8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease),visibility 0s .3s}
+nav li.dd:hover .ddm,nav li.dd:focus-within .ddm{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+nav li.dd.kapat .ddm{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.ddm-in{width:380px;padding:10px;border-radius:1.4rem;border:1px solid var(--line2);background:rgba(10,14,26,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 40px rgba(255,160,50,.07)}
+nav ul .ddm a{display:flex;align-items:center;gap:14px;padding:10px 12px;border-radius:1rem;transform:none;transition:background .25s}
+nav ul .ddm a:hover{background:rgba(255,255,255,.06);transform:none}
+.ddm .th{flex:none;width:52px;height:52px;border-radius:.8rem;background:radial-gradient(circle at 50% 40%,rgba(255,178,63,.22),rgba(255,255,255,.03) 70%);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.ddm .th img{width:100%;height:100%;object-fit:contain;padding:4px}
+.ddm b{display:block;color:#fff;font-weight:600;font-size:.93rem}
+.ddm small{display:block;color:#8d94a5;font-size:.78rem;margin-top:2px}
+.ddm a:hover b{color:var(--gold)}
+.ddm .tum{justify-content:space-between;margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 1rem 1rem;color:var(--gold);font-size:.85rem;font-weight:600}
 .nav-sag{display:flex;align-items:center;gap:.6rem}
 .menu-btn{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:rgba(8,11,20,.5);position:relative;flex:none;cursor:pointer}
 .menu-btn span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:#fff;transition:transform .35s var(--ease),top .35s var(--ease)}
@@ -492,7 +508,13 @@ body.km-acik{overflow:hidden}
 <nav id="nav">
   <a href="#hero" class="logo"><span class="bulb"></span><span>bey<b>Teknik</b></span></a>
   <ul>
-    <li><a href="#urunler">Ürünler</a></li>
+    <li class="dd"><a href="#urunler" aria-haspopup="true">Ürünler</a>
+      <div class="ddm"><div class="ddm-in">
+        <a href="#katalog" data-kat="modern"><span class="th"><img src="img/aile_modern.webp" alt=""></span><span><b>Modern Park Bahçe Direkleri</b><small>Park · Bahçe · Meydan</small></span></a>
+        <a href="#katalog" data-kat="yol"><span class="th"><img src="img/aile_yol.webp" alt=""></span><span><b>Yol Direkleri</b><small>Cadde · Bulvar · Ana arter</small></span></a>
+        <a href="#katalog" data-kat="bollard"><span class="th"><img src="img/aile_bollard.webp" alt=""></span><span><b>Bollard</b><small>Yürüyüş yolu · Peyzaj · Giriş</small></span></a>
+        <a href="#urunler" class="tum">Tüm ürün ailelerini görün <span>→</span></a>
+      </div></div></li>
     <li><a href="#katalog">Katalog</a></li>
     <li><a href="#lab">Işık Laboratuvarı</a></li>
     <li><a href="#uretim">Üretim</a></li>
@@ -761,9 +783,13 @@ if(!RM && typeof Lenis!=='undefined'){
   gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
   lenis.stop();
 }
+/* menü sekmeleri başlığı geçip doğrudan içeriğe insin */
+const HEDEF={'#urunler':['#hs',2],'#katalog':['.kt-ara',-100],'#lab':['.lab',-100],'#uretim':['#uretim .stats',-100],'#referanslar':['#referanslar .big3',-100],'#projeler':['#pjF',-100]};
+$$('nav li.dd a').forEach(a=>a.addEventListener('click',()=>{const li=a.closest('li.dd');li.classList.add('kapat');document.activeElement&&document.activeElement.blur();li.addEventListener('mouseleave',()=>li.classList.remove('kapat'),{once:true});}));
 $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
-  const t=$(a.getAttribute('href'));if(!t)return;e.preventDefault();
-  lenis?lenis.scrollTo(t,{offset:0,duration:1.6}):t.scrollIntoView({behavior:'smooth'});
+  const h=a.getAttribute('href');const hd=HEDEF[h];let t=$(hd?hd[0]:h);if(!t)return;if(t.parentElement&&t.parentElement.classList.contains('pin-spacer'))t=t.parentElement;e.preventDefault();
+  const off=hd?hd[1]:0;
+  lenis?lenis.scrollTo(t,{offset:off,duration:1.6}):t.scrollIntoView({behavior:'smooth'});
 }));
 
 /* ---------- cursor ---------- */
@@ -1115,7 +1141,7 @@ $('#form').addEventListener('submit',e=>{
   if(K.ek.length)kats.push({id:'ek',ad:'Tamamlayıcı Ürünler',kisa:'Armatür, projektör, duvar aplikleri ve kent mobilyası',no:kats.length+1,adet:K.ek.length});
   let aktif=kats[0].id,liste=[];
   tabs.innerHTML=kats.map(k=>`<button role="tab" data-k="${k.id}">${esc(k.ad)}<small>${k.adet}</small></button>`).join('');
-  const kart=(u,i)=>{const g=u.hero||u.detay||{};return `<button class="kc" data-i="${i}"><div class="ki"><img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
+  const kart=(u,i)=>{const g=u.kart||u.hero||u.detay||{};return `<button class="kc" data-i="${i}"><div class="ki"><img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
   const ekKart=u=>`<div class="kc ek"><div class="ki"><img src="${u.img.s}" alt="${esc(u.kod)}" loading="lazy" width="${u.img.w}" height="${u.img.h}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.alt||EK_AD[u.grup]||'')}</span></div></div>`;
   function ciz(){
     const q=ara.value.trim().toLocaleLowerCase('tr');
@@ -1138,7 +1164,7 @@ $('#form').addEventListener('submit',e=>{
   let zt;ara.addEventListener('input',()=>{clearTimeout(zt);zt=setTimeout(ciz,180)});
   grid.addEventListener('click',e=>{const b=e.target.closest('.kc[data-i]');if(b)ac(+b.dataset.i)});
   /* ürün ailesi kartından ya da alt menüden kataloğa git */
-  const git=k=>{if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-60,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
+  const git=k=>{if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('.kt-ara')||$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-100,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
   document.addEventListener('click',e=>{const a=e.target.closest('[data-kat]');if(!a||a.closest('#katalog'))return;if(e.target.closest('a.btn'))return;e.preventDefault();git(a.dataset.kat);});
   document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const a=e.target.closest&&e.target.closest('.pc[data-kat]');if(a){e.preventDefault();git(a.dataset.kat);}});
 
