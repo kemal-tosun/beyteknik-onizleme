@@ -22,6 +22,20 @@
 html{background:var(--night);-webkit-text-size-adjust:100%}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
+/* efektler: ışık süpüren yazı, spot ışığı, mıknatıs, teklif huzmeleri, kıvılcım */
+.shiny{background:linear-gradient(110deg,var(--amber) 0%,var(--amber) 40%,#fff6e0 50%,var(--amber) 60%,var(--amber) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-150% 0}}
+.sc{--x:50%;--y:50%}
+.sc:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(380px circle at var(--x) var(--y),rgba(255,178,63,.2),transparent 60%);opacity:0;transition:opacity .4s;mix-blend-mode:screen;z-index:3}
+.sc:hover:after{opacity:1}
+.btn.mag{transition:none}
+#teklif{position:relative;overflow:hidden}
+#teklif>.wrap{position:relative;z-index:1}
+.rays{position:absolute;inset:0;pointer-events:none;z-index:0}
+.rays .lamp{position:absolute;top:0;left:50%;width:160px;height:14px;margin-left:-80px;border-radius:0 0 80px 80px;background:#fff3d6;box-shadow:0 0 40px 14px rgba(255,200,110,.7)}
+.rays .beam{position:absolute;top:0;left:50%;width:200px;height:130%;transform-origin:50% 0;background:linear-gradient(180deg,rgba(255,210,122,.5),rgba(255,178,63,.08) 55%,transparent 80%);filter:blur(22px);mix-blend-mode:screen}
+.kvl{position:absolute;width:3px;height:14px;border-radius:2px;background:var(--gold);pointer-events:none;box-shadow:0 0 8px var(--amber);z-index:5}
+@media (prefers-reduced-motion:reduce){.shiny{animation:none}}
 body{font-family:'Outfit',sans-serif;background:var(--night);color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
@@ -76,6 +90,12 @@ nav ul a:hover{color:#fff;transform:translateY(-1px)}
 .btn .ar{transition:transform .4s var(--ease)}
 .btn:hover .ar{transform:translateX(4px)}
 nav .btn{padding:.7rem 1.2rem;font-size:.88rem}
+.nav-sag{display:flex;align-items:center;gap:.6rem}
+.menu-btn{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line2);background:rgba(8,11,20,.5);position:relative;flex:none;cursor:pointer}
+.menu-btn span{position:absolute;left:13px;right:13px;height:2px;border-radius:2px;background:#fff;transition:transform .35s var(--ease),top .35s var(--ease)}
+.menu-btn span:first-child{top:17px}.menu-btn span:last-child{top:25px}
+nav.acik .menu-btn span:first-child{top:21px;transform:rotate(45deg)}
+nav.acik .menu-btn span:last-child{top:21px;transform:rotate(-45deg)}
 
 /* hero */
 #hero{height:100vh;height:100svh;min-height:620px;overflow:hidden}
@@ -126,6 +146,7 @@ nav .btn{padding:.7rem 1.2rem;font-size:.88rem}
 .pc .vis .halo{position:absolute;width:115%;aspect-ratio:1;left:50%;top:6%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,178,63,.34),rgba(255,122,26,.08) 42%,transparent 68%);transition:opacity .6s}
 .pc .vis img{position:relative;height:auto;max-height:calc(min(72vh,640px) - 3rem);max-width:90%;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6)) brightness(1.15) contrast(1.05);transition:transform .8s var(--ease)}
 .pc:hover .vis img{transform:translateY(-10px) scale(1.03)}
+.pc.git{cursor:pointer}.pc.git:focus-visible{outline:2px solid #FFD27A;outline-offset:4px}.pc .gor{display:inline-flex;gap:.4rem;margin-top:1.2rem;font-weight:600;color:#FFD27A}.pc.git:hover .gor .ar{transform:translateX(4px)}.pc .gor .ar{transition:transform .3s}
 .pc .vis .floor{position:absolute;bottom:0;left:10%;right:10%;height:40px;background:radial-gradient(50% 100% at 50% 100%,rgba(255,178,63,.35),transparent 70%)}
 .pc .info{padding:3rem 3rem 2.6rem 1rem;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
 .pc h3{font-size:clamp(1.9rem,3.4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1}
@@ -277,6 +298,7 @@ footer{padding:5rem 0 2rem;border-top:1px solid var(--line);overflow:hidden}
 #katalog{padding:7rem 0 6rem;background:linear-gradient(180deg,var(--night),#070b15 40%,var(--night))}
 .kt-top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
 .kt-top .sub{color:var(--mute);max-width:30rem;margin-top:1rem}
+.kt-pdf{margin-top:1.4rem}
 .kt-ara{position:relative;width:min(320px,100%)}
 .kt-ara input{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:100px;padding:.8rem 1.1rem .8rem 2.6rem;color:#fff;font:inherit;outline:none;transition:border-color .3s}
 .kt-ara input:focus{border-color:var(--amber);box-shadow:0 0 0 4px rgba(255,178,63,.12)}
@@ -405,6 +427,8 @@ body.km-acik{overflow:hidden}
   .lb .box{grid-template-columns:1fr}
 }
 @media (max-width:560px){
+  nav .btn{padding:.6rem .9rem;font-size:.82rem}
+  .logo{font-size:1.2rem}
   .pj-grid{grid-template-columns:1fr}
   .pj.b{grid-column:auto;aspect-ratio:4/3}
   .blg-grid{grid-template-columns:repeat(2,1fr)}
@@ -425,6 +449,14 @@ body.km-acik{overflow:hidden}
 }
 @media (max-width:900px){
   nav ul{display:none}
+  nav{padding:8px 8px 8px 18px}
+  .menu-btn{display:block}
+  nav.acik{background:rgba(8,11,20,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-color:var(--line);border-radius:1.6rem;flex-wrap:wrap}
+  nav.acik ul{display:flex;flex-direction:column;gap:0;width:100%;order:3;padding:.6rem 0 .4rem;font-size:1.05rem}
+  nav.acik ul a{display:block;padding:.85rem .2rem;border-top:1px solid var(--line)}
+  .pc{grid-template-rows:auto auto}
+  .pc .vis{padding-top:3rem}
+  .pc .vis img{max-height:calc(min(56vh,440px) - 3.5rem)}
   .hint{display:none}
   .hs{height:auto;display:block;padding:3rem 0 2rem}
   .track{flex-direction:column;padding:0 16px;gap:18px}
@@ -448,6 +480,8 @@ body.km-acik{overflow:hidden}
   .fcols{grid-template-columns:1fr 1fr}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.mani .w{opacity:1}}
+.wa-btn{position:fixed;right:20px;bottom:20px;z-index:9999;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.35);transition:transform .2s}
+.wa-btn:hover{transform:scale(1.08)}.wa-btn svg{width:32px;height:32px;fill:#fff}
 </style>
 </head>
 <body>
@@ -465,7 +499,8 @@ body.km-acik{overflow:hidden}
     <li><a href="#referanslar">Referanslar</a></li>
     <li><a href="#projeler">Projeler</a></li>
   </ul>
-  <a href="#teklif" class="btn pri">Teklif isteyin <span class="ar">→</span></a>
+  <div class="nav-sag"><a href="#teklif" class="btn pri">Teklif isteyin <span class="ar">→</span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false"><span></span><span></span></button></div>
 </nav>
 
 <!-- HERO -->
@@ -473,7 +508,7 @@ body.km-acik{overflow:hidden}
   <canvas id="night"></canvas>
   <div class="hero-c">
     <div class="wrap">
-      <div class="kick h-in">Bursa · 2008'den beri · Dış mekan aydınlatma</div>
+      <div class="kick h-in"><span class="shiny">Bursa · 2008'den beri · Dış mekan aydınlatma</span></div>
       <h1 id="h1"><span class="ln" data-split>Şehre</span><span class="ln ln2"><span class="serif" id="isik">ışık</span> <span class="clip" data-split>tasarlıyoruz.</span></span></h1>
       <p class="lead h-in">Park, cadde, meydan ve yaşam alanları için direkleri ve bollardları kendimiz tasarlıyor, kendi fabrikamızda üretiyoruz.</p>
       <div class="acts h-in">
@@ -509,25 +544,25 @@ body.km-acik{overflow:hidden}
   </div>
   <div class="hs" id="hs">
     <div class="track" id="track">
-      <article class="pc"><div class="num">01</div>
+      <article class="pc git" data-kat="modern" tabindex="0" role="link"><div class="num">01</div>
         <div class="vis"><div class="halo"></div><img src="img/aile_modern.webp" alt="SL-1500 dalga gövdeli modern park direği" loading="lazy"><div class="floor"></div></div>
         <div class="info"><div class="use">Park · Site · Kampüs</div><h3>Modern Direkler</h3><p>Dalga gövde, disk armatür, ince çizgiler. Park ve sitelere gece de dikkat çeken modern bir imza.</p>
-          <div class="chips"><span>Heykelsi gövde</span><span>Disk armatür</span><span>RGB seçeneği</span><span>IP65</span></div></div>
+          <div class="chips"><span>Heykelsi gövde</span><span>Disk armatür</span><span>RGB seçeneği</span><span>IP65</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
-      <article class="pc"><div class="num">02</div>
+      <article class="pc git" data-kat="yol" tabindex="0" role="link"><div class="num">02</div>
         <div class="vis"><div class="halo"></div><img src="img/aile_yol.webp" alt="SL-5100 çift yay kollu bulvar direği" loading="lazy"><div class="floor"></div></div>
         <div class="info"><div class="use">Cadde · Bulvar · Ana arter</div><h3>Yol Direkleri</h3><p>Cadde ve bulvarlara eşit, verimli ışık. Belediyenize özel arma, yazı ve renkle şehrin kimliğini taşır.</p>
-          <div class="chips"><span>Çift kollu</span><span>Asimetrik dağılım</span><span>Arma ve yazı</span><span>Özel RAL</span></div></div>
+          <div class="chips"><span>Çift kollu</span><span>Asimetrik dağılım</span><span>Arma ve yazı</span><span>Özel RAL</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
-      <article class="pc"><div class="num">03</div>
+      <article class="pc git" data-kat="meydan" tabindex="0" role="link"><div class="num">03</div>
         <div class="vis"><div class="halo"></div><img src="img/aile_meydan.webp" alt="SL-6040 üç silindirli meydan direği" loading="lazy"><div class="floor"></div></div>
         <div class="info"><div class="use">Kent meydanı · Büyük alanlar</div><h3>Meydan Direkleri</h3><p>Bir aydınlatmadan çok bir heykel. Meydanınızın simgesi olacak, dekoratif ışıklı özel formlar.</p>
-          <div class="chips"><span>Heykelsi form</span><span>Dekoratif LED</span><span>Özel tasarım</span></div></div>
+          <div class="chips"><span>Heykelsi form</span><span>Dekoratif LED</span><span>Özel tasarım</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
-      <article class="pc"><div class="num">04</div>
+      <article class="pc git" data-kat="bollard" tabindex="0" role="link"><div class="num">04</div>
         <div class="vis"><div class="halo"></div><img src="img/aile_bollard.webp" alt="SL-7090 çift pencereli bollard serisi" loading="lazy" style="max-height:72%"><div class="floor"></div></div>
         <div class="info"><div class="use">Yürüyüş yolu · Peyzaj · Giriş</div><h3>Bollard</h3><p>Yolu göz kamaştırmadan gösteren alçak ışık. Beş farklı boy, tek tasarım dili.</p>
-          <div class="chips"><span>Beş boy</span><span>Çift ışık penceresi</span><span>PMMA lens</span><span>Alüminyum gövde</span></div></div>
+          <div class="chips"><span>Beş boy</span><span>Çift ışık penceresi</span><span>PMMA lens</span><span>Alüminyum gövde</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc last"><div>
         <h3>Aklınızdaki direk<br><span class="serif">listede yok mu?</span></h3>
@@ -544,7 +579,8 @@ body.km-acik{overflow:hidden}
   <div class="wrap">
     <div class="kt-top">
       <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde.</span></h2>
-        <p class="sub">Yedi ürün ailesi, her biri kendi kategorisinde. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p></div>
+        <p class="sub">Yedi ürün ailesi, her biri kendi kategorisinde. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
+        <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (18 MB) <span class="ar">↓</span></a></div>
       <label class="kt-ara"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="ktAra" type="search" placeholder="Model kodu ya da ad ara" aria-label="Katalogda ara"></label>
     </div>
     <div class="kt-tabs" id="ktTabs" role="tablist"></div>
@@ -677,7 +713,7 @@ body.km-acik{overflow:hidden}
         <ul><li>Projeye özel ürün önerisi</li><li>Özel ölçü, renk ve arma</li><li>Kamu ve özel sektör tecrübesi</li><li>ISO 9001 ve TSE belgeli üretim</li></ul>
         <p style="margin-top:1.4rem"><a href="tel:+902242154544">+90 224 215 45 44</a><br><a href="mailto:info@beyteknik.com">info@beyteknik.com</a></p>
       </div>
-      <form id="form" novalidate>
+      <form id="form" novalidate><input type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <div class="f2">
           <div><label for="fa">Ad soyad</label><input id="fa" name="ad" required autocomplete="name"></div>
           <div><label for="ff">Kurum / firma</label><input id="ff" name="firma" autocomplete="organization"></div>
@@ -700,8 +736,8 @@ body.km-acik{overflow:hidden}
     <div class="fwm" id="fwm">beyTeknik</div>
     <div class="fcols">
       <div><div class="logo" style="margin-bottom:1rem"><span class="bulb"></span><span>bey<b>Teknik</b></span></div><p>Dış mekan aydınlatma direkleri ve bollardlar. Bursa'da tasarlanır, Bursa'da üretilir. ISO 9001 ve TSE belgeli, %100 yerli üretim.</p></div>
-      <div><h5>Ürünler</h5><a href="#urunler">Modern direkler</a><a href="#urunler">Yol direkleri</a><a href="#urunler">Meydan direkleri</a><a href="#urunler">Bollard</a></div>
-      <div><h5>Firma</h5><a href="#uretim">Üretim</a><a href="#referanslar">Referanslar</a><a href="#lab">Işık laboratuvarı</a><a href="#teklif">Teklif isteyin</a></div>
+      <div><h5>Ürünler</h5><a href="#katalog" data-kat="modern">Modern direkler</a><a href="#katalog" data-kat="yol">Yol direkleri</a><a href="#katalog" data-kat="meydan">Meydan direkleri</a><a href="#katalog" data-kat="bollard">Bollard</a></div>
+      <div><h5>Firma</h5><a href="#uretim">Üretim</a><a href="#referanslar">Referanslar</a><a href="#lab">Işık laboratuvarı</a><a href="#teklif">Teklif isteyin</a><a href="indir/BeyTeknik_Katalog_2027.pdf" download>Katalog PDF (2027)</a></div>
       <div><h5>Adres</h5><p>Alaaddinbey Mah.<br>Atilla Tatveren Cad. No: 5/1<br>Nilüfer / Bursa</p><p style="margin-top:.8rem"><a href="tel:+902242154544">+90 224 215 45 44</a><a href="mailto:info@beyteknik.com">info@beyteknik.com</a><a href="https://www.instagram.com/selightaydinlatma/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/selightaydinlatma/" target="_blank" rel="noopener">Facebook</a></p></div>
     </div>
     <div class="fbot"><span>© 2026 BeyTeknik Aydınlatma</span><span class="status"><i></i>Fabrika çalışıyor · Teklif hattı açık</span></div>
@@ -715,7 +751,7 @@ body.km-acik{overflow:hidden}
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* Firma bilgileri gelince doldurulacak: e-posta dolarsa form e-posta taslağı açar */
-const CONFIG={email:'info@beyteknik.com',whatsapp:''};
+const CONFIG={email:'info@beyteknik.com',whatsapp:'905322059359'};
 
 gsap.registerPlugin(ScrollTrigger);
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -855,6 +891,11 @@ gsap.timeline()
   .to('#nav',{opacity:1,y:0,duration:.8},'<');
 
 /* ---------- nav + progress ---------- */
+(()=>{const nv=document.getElementById('nav'),mb=document.getElementById('menuBtn');
+  const kapat=()=>{nv.classList.remove('acik');mb.setAttribute('aria-expanded','false');mb.setAttribute('aria-label','Menüyü aç')};
+  mb.addEventListener('click',()=>{const a=nv.classList.toggle('acik');mb.setAttribute('aria-expanded',a);mb.setAttribute('aria-label',a?'Menüyü kapat':'Menüyü aç')});
+  nv.querySelectorAll('a').forEach(a=>a.addEventListener('click',kapat));
+  addEventListener('resize',()=>{if(innerWidth>900)kapat()});})();
 ScrollTrigger.create({start:80,onUpdate:s=>$('#nav').classList.toggle('on',s.scroll()>80)});
 gsap.to('#prog',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
 gsap.to('.hero-c',{yPercent:-18,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
@@ -1018,14 +1059,49 @@ setInterval(()=>{ri=(ri+1)%ralC.length;gsap.to('.ralc',{attr:{fill:ralC[ri]},dur
 
 /* ---------- form ---------- */
 $$('#pick button').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+/* ---------- efekt: üretim kartlarında spot ışığı ---------- */
+$$('.sc').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();
+  c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')}));
+
+/* ---------- efekt: mıknatıslı ana butonlar (formdaki hariç) ---------- */
+if(FINE&&!RM){const mags=$$('.btn.pri').filter(b=>!b.closest('form'));
+  mags.forEach(b=>{b.classList.add('mag');b._x=gsap.quickTo(b,'x',{duration:.4,ease:'power3.out'});b._y=gsap.quickTo(b,'y',{duration:.4,ease:'power3.out'});b._in=false});
+  addEventListener('pointermove',e=>mags.forEach(b=>{const r=b.getBoundingClientRect();if(!r.width)return;
+    const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),near=Math.abs(dx)<r.width/2+50&&Math.abs(dy)<r.height/2+50;
+    if(near){if(!b._in){b._in=true;gsap.to(b,{scale:1.04,duration:.3})}b._x(dx*.3);b._y(dy*.3)}
+    else if(b._in){b._in=false;gsap.to(b,{x:0,y:0,scale:1,duration:.8,ease:'elastic.out(1,.4)',overwrite:'auto'})}}),{passive:true});
+}
+
+/* ---------- efekt: teklif bölümünde ışık huzmeleri ---------- */
+(()=>{const t=$('#teklif'),r=document.createElement('div');r.className='rays';
+  r.innerHTML='<div class="beam"></div>'.repeat(5)+'<div class="lamp"></div>';t.prepend(r);
+  const ang=[-30,-15,0,15,30];
+  $$('#teklif .beam').forEach((b,i)=>{gsap.set(b,{xPercent:-50,rotate:ang[i],opacity:.3+Math.random()*.3,scaleX:.7+Math.random()*.8});
+    if(!RM)gsap.to(b,{rotate:ang[i]+gsap.utils.random(-7,7),opacity:gsap.utils.random(.25,.75),duration:gsap.utils.random(3,5.5),ease:'sine.inOut',yoyo:true,repeat:-1})});
+  if(!RM)gsap.to('#teklif .lamp',{boxShadow:'0 0 60px 22px rgba(255,200,110,.85)',duration:2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+})();
+
+/* ---------- efekt: teklif gönderilince kıvılcım ---------- */
+const kivilcim=(host,x,y,n=18)=>{for(let i=0;i<n;i++){const s=document.createElement('i');s.className='kvl';host.appendChild(s);
+  const a=i/n*Math.PI*2+Math.random()*.3,d=60+Math.random()*70;
+  gsap.set(s,{left:x,top:y,xPercent:-50,yPercent:-50,rotate:a*180/Math.PI+90});
+  gsap.to(s,{x:Math.cos(a)*d,y:Math.sin(a)*d,scaleY:.2,opacity:0,duration:.7+Math.random()*.3,delay:.2,ease:'power2.out',onComplete:()=>s.remove()})}};
+
 $('#form').addEventListener('submit',e=>{
   e.preventDefault();const f=e.target;let ok=true;
   ['#fa','#ft'].forEach(s=>{const i=$(s);if(!i.value.trim()){ok=false;i.style.borderColor='#ff5a5a';gsap.fromTo(i,{x:-6},{x:0,duration:.4,ease:'elastic.out(1,.3)'})}else i.style.borderColor=''});
   if(!ok)return;
   const alan=$$('#pick .on').map(b=>b.textContent).join(', ');
   const body=`Ad: ${f.ad.value}\nKurum: ${f.firma.value}\nTelefon: ${f.tel.value}\nE-posta: ${f.eposta.value}\nAlan: ${alan}\n\n${f.mesaj.value}`;
-  if(CONFIG.email)location.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent('Teklif talebi: '+f.ad.value)}&body=${encodeURIComponent(body)}`;
+  const btn=f.querySelector('[type=submit]');if(btn){btn.disabled=true}
+  const fd=new FormData(f);fd.set('alan',alan);
+  const yedek=()=>{if(CONFIG.email)location.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent('Teklif talebi: '+f.ad.value)}&body=${encodeURIComponent(body)}`};
+  fetch('teklif.php',{method:'POST',body:fd}).then(r=>r.ok?r.json():{ok:false}).then(j=>{if(!j.ok)yedek();tamam()}).catch(()=>{yedek();tamam()});
+  function tamam(){if(btn)btn.disabled=false;
   f.classList.add('sent');gsap.from('.ok > *',{y:20,opacity:0,stagger:.1,duration:.8,ease:'power3.out'});
+  if(!RM)requestAnimationFrame(()=>{const fb=f.getBoundingClientRect(),bb=$('.ok .bulb2').getBoundingClientRect();
+    kivilcim(f,bb.left-fb.left+bb.width/2,bb.top-fb.top+bb.height/2)});
+  }
 });
 
 /* ---------- footer wordmark ---------- */
@@ -1066,6 +1142,10 @@ $('#form').addEventListener('submit',e=>{
   tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;aktif=b.dataset.k;ara.value='';ciz();});
   let zt;ara.addEventListener('input',()=>{clearTimeout(zt);zt=setTimeout(ciz,180)});
   grid.addEventListener('click',e=>{const b=e.target.closest('.kc[data-i]');if(b)ac(+b.dataset.i)});
+  /* ürün ailesi kartından ya da alt menüden kataloğa git */
+  const git=k=>{if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-60,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
+  document.addEventListener('click',e=>{const a=e.target.closest('[data-kat]');if(!a||a.closest('#katalog'))return;if(e.target.closest('a.btn'))return;e.preventDefault();git(a.dataset.kat);});
+  document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const a=e.target.closest&&e.target.closest('.pc[data-kat]');if(a){e.preventDefault();git(a.dataset.kat);}});
 
   /* ürün penceresi */
   const km=$('#km'),ana=$('#kmAna'),th=$('#kmTh'),sag=$('#kmSag');let sira=0,once=null;
@@ -1119,5 +1199,7 @@ $('#form').addEventListener('submit',e=>{
 
 addEventListener('load',()=>ScrollTrigger.refresh());
 </script>
+<a class="wa-btn" id="waBtn" href="#" target="_blank" rel="noopener" aria-label="WhatsApp ile yazın"><svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.1c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.2 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.1 16 5.1s10.6 4.7 10.6 10.5S21.9 26.1 16 26.1zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.7-.4z"/></svg></a>
+<script>(function(){var b=document.getElementById('waBtn');if(CONFIG.whatsapp){b.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Merhaba, BeyTeknik ürünleri hakkında bilgi almak istiyorum.')}else b.style.display='none'})();</script>
 </body>
 </html>
