@@ -7,7 +7,7 @@
    dugme: düğme yazısı */
 window.VITRIN={
   "hafta":"17 Kasım 2026",
-  "sure":6500,
+  "sure":4000,
   "slaytlar":[
     {"img":"img/vitrin/kure_beyaz.webp","etiket":"Yeni · Işık küresi","baslik":"Bahçeye beyaz bir ay","alt":"SL-9050 beyaz ışık küresi. Çimde, yol kenarında, havuz başında gece boyu yumuşak ışık.","link":"katalog:bollard","dugme":"Küreleri görün"},
     {"img":"img/vitrin/kure_sari.webp","etiket":"Yeni · Işık küresi","baslik":"Sıcak ışıkla akşam keyfi","alt":"Sarı ışıklı küreler bahçeye sıcak, davetkar bir hava katar.","link":"katalog:bollard","dugme":"Küreleri görün"},
