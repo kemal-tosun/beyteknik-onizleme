@@ -706,6 +706,24 @@ html.gunduz .pc .vis{background:linear-gradient(180deg,#d2d2d2 0%,#c4c4c4 100%)}
 html.gunduz .pc .vis img{filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))}
 html.gunduz .pc{box-shadow:0 1px 3px rgba(0,0,0,.06)}
 html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
+/* === URUN AILELERI tek sayfa izgara (kayan serit kaldirildi, 2026-11-19) === */
+.hs{height:auto;overflow:visible;display:block;padding:1rem 0 5rem}
+.track{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1240px;margin:0 auto;padding:0 16px;will-change:auto}
+.pc{width:auto;height:auto;grid-template-columns:1fr;grid-template-rows:auto 1fr;border-radius:1.8rem}
+.pc .vis{height:clamp(240px,30vh,320px);padding-top:1.4rem}
+.pc .vis img{max-height:calc(clamp(240px,30vh,320px) - 2.4rem)}
+.pc .num{left:1.4rem;top:1rem;font-size:clamp(3rem,5vw,4.5rem);z-index:1}
+.pc .info{padding:.6rem 1.6rem 1.8rem;justify-content:flex-start}
+.pc h3{font-size:clamp(1.3rem,1.7vw,1.65rem)}
+.pc .use{font-size:.7rem;letter-spacing:.16em;margin-bottom:.6rem}
+.pc p{font-size:.92rem;margin-top:.7rem}
+.pc .chips{margin-top:.9rem}
+.pc.last{grid-column:1/-1;padding:2.4rem}
+.pc.last h3{font-size:clamp(1.8rem,3vw,2.6rem)}
+.pc.last p{max-width:42rem;margin:1rem auto 1.4rem}
+.hs-bar{display:none}
+@media (max-width:1100px){.track{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.track{grid-template-columns:1fr}.pc .vis{height:52vh;max-height:420px}.pc .vis img{max-height:calc(min(52vh,420px) - 2.4rem)}}
 </style>
 <script>try{if(localStorage.getItem("tema")==="gunduz")document.documentElement.classList.add("gunduz")}catch(e){}</script>
 </head>
@@ -1063,7 +1081,7 @@ if(!RM && typeof Lenis!=='undefined'){
   lenis.stop();
 }
 /* menü sekmeleri başlığı geçip doğrudan içeriğe insin */
-const HEDEF={'#urunler':['#hs',2],'#katalog':['.kt-ara',-100],'#lab':['.lab',-100],'#uretim':['#uretim .stats',-100],'#referanslar':['#referanslar .big3',-100],'#projeler':['#pjF',-100]};
+const HEDEF={'#urunler':['#hs',-100],'#katalog':['.kt-ara',-100],'#lab':['.lab',-100],'#uretim':['#uretim .stats',-100],'#referanslar':['#referanslar .big3',-100],'#projeler':['#pjF',-100]};
 $$('nav li.dd a').forEach(a=>a.addEventListener('click',()=>{const li=a.closest('li.dd');li.classList.add('kapat');document.activeElement&&document.activeElement.blur();li.addEventListener('mouseleave',()=>li.classList.remove('kapat'),{once:true});}));
 $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
   const h=a.getAttribute('href');const hd=HEDEF[h];let t=$(hd?hd[0]:h);if(!t)return;if(t.parentElement&&t.parentElement.classList.contains('pin-spacer'))t=t.parentElement;e.preventDefault();
@@ -1214,21 +1232,8 @@ if(!RM)gsap.to('#mani .w',{opacity:1,stagger:.06,ease:'none',scrollTrigger:{trig
 gsap.to('#mani .w.hl',{textShadow:'0 0 24px rgba(255,170,60,.55)',scrollTrigger:{trigger:'#mani',start:'center 50%',toggleActions:'play none none reverse'}});
 
 /* ---------- products horizontal ---------- */
-const mm=gsap.matchMedia();
-mm.add('(min-width: 901px)',()=>{
-  const tr=$('#track');
-  const dist=()=>tr.scrollWidth-innerWidth;
-  const tw=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#hs',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true,
-    onUpdate:s=>gsap.set('#hsbar',{scaleX:s.progress})}});
-  $$('.pc:not(.last)').forEach(pc=>{
-    gsap.fromTo(pc.querySelector('.vis img'),{x:80,rotate:0},{x:-40,rotate:0,ease:'none',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
-    gsap.fromTo(pc.querySelector('.halo'),{opacity:.15,scale:.7},{opacity:1,scale:1,ease:'power1.out',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left 85%',end:'center center',scrub:true}});
-    gsap.fromTo(pc.querySelector('.num'),{x:-60},{x:60,ease:'none',scrollTrigger:{trigger:pc,containerAnimation:tw,start:'left right',end:'right left',scrub:true}});
-  });
-});
-mm.add('(max-width: 900px)',()=>{
-  $$('.pc').forEach(pc=>gsap.from(pc,{y:60,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:pc,start:'top 85%'}}));
-});
+/* kayan serit kaldirildi: kartlar tek sayfada, sirayla belirir */
+if(!RM)$$('.pc').forEach((pc,i)=>gsap.from(pc,{y:50,opacity:0,duration:.9,delay:(i%4)*.08,ease:'power3.out',scrollTrigger:{trigger:'#track',start:'top 85%'}}));
 // tilt
 if(FINE)$$('.pc:not(.last)').forEach(pc=>{
   pc.addEventListener('mousemove',e=>{const r=pc.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
