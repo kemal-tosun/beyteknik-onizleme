@@ -735,6 +735,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
 <nav id="nav">
   <a href="#vitrin" class="logo"><span class="bulb"></span><span>bey<b>Teknik</b></span></a>
   <ul>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
     <li class="dd"><a href="#urunler" aria-haspopup="true">Ürünler</a>
       <div class="ddm"><div class="ddm-in">
         <a href="#katalog" data-kat="modern"><span class="th"><img src="img/aile_modern.webp" alt=""></span><span><b>Modern Park Bahçe Direkleri</b><small>Park · Bahçe · Peyzaj</small></span></a>
@@ -790,14 +791,6 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
   <div class="row" id="mq1"></div>
 </div>
 
-<!-- MANIFESTO -->
-<section class="mani">
-  <div class="wrap">
-    <div class="kick">Biz kimiz</div>
-    <p id="mani">Bir şehri güzel yapan, gündüz görünen binalar kadar *gece yanan ışıklardır. Biz o ışığı tasarlıyor, geliştiriyor ve ^kendi ^fabrikamızda üretiyoruz. Küçük bir atölyede başlayan yol bugün havalimanlarına, otoyollara ve ^yüzlerce ^parka uzanıyor.</p>
-  </div>
-</section>
-
 <!-- PRODUCTS -->
 <section id="urunler">
   <div class="ph wrap">
@@ -843,7 +836,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
   <div class="wrap">
     <div class="kt-top">
       <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde.</span></h2>
-        <p class="sub">Altı ürün ailesi, her biri kendi kategorisinde. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
+        <p class="sub">Dört ürün ailesi, sade ve kolay gezilir. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
         <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (17 MB) <span class="ar">↓</span></a></div>
       <label class="kt-ara"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="ktAra" type="search" placeholder="Model kodu ya da ad ara" aria-label="Katalogda ara"></label>
     </div>
@@ -1008,7 +1001,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
     <div class="fcols">
       <div><div class="logo" style="margin-bottom:1rem"><span class="bulb"></span><span>bey<b>Teknik</b></span></div><p>Dış mekan aydınlatma direkleri ve bollardlar. Bursa'da tasarlanır, Bursa'da üretilir. ISO 9001 ve TSE belgeli, %100 yerli üretim.</p></div>
       <div><h5>Ürünler</h5><a href="urunler/led-aydinlatma-direkleri/" data-kat="modern">Modern park bahçe direkleri</a><a href="urunler/led-cadde-ve-yol-aydinlatma-direkleri/" data-kat="yol">Yol direkleri</a><a href="urunler/led-meydan-aydinlatma-direkleri/" data-kat="meydan">Meydan direkleri</a><a href="urunler/led-gunes-enerjili-aydinlatma-direkleri/" data-kat="gunes">Güneş enerjili direkler</a><a href="urunler/led-bollard-aydinlatmalar/" data-kat="bollard">Bollard</a><a href="urunler/led-setustu-armaturler/" data-kat="setustu">Set üstü armatürler</a></div>
-      <div><h5>Firma</h5><a href="#uretim">Üretim</a><a href="#referanslar">Referanslar</a><a href="#lab">Işık laboratuvarı</a><a href="#teklif">Teklif isteyin</a><a href="indir/BeyTeknik_Katalog_2027.pdf" download>Katalog PDF (2027)</a></div>
+      <div><h5>Firma</h5><a href="hakkimizda.html">Hakkımızda</a><a href="#uretim">Üretim</a><a href="#referanslar">Referanslar</a><a href="#lab">Işık laboratuvarı</a><a href="#teklif">Teklif isteyin</a><a href="indir/BeyTeknik_Katalog_2027.pdf" download>Katalog PDF (2027)</a></div>
       <div><h5>Adres</h5><p>Alaaddinbey Mah.<br>Atilla Tatveren Cad. No: 5/1<br>Nilüfer / Bursa</p><p style="margin-top:.8rem"><a href="tel:+902242154544">+90 224 215 45 44</a><a href="mailto:info@beyteknik.com">info@beyteknik.com</a><a href="https://www.instagram.com/selightaydinlatma/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/selightaydinlatma/" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/company/beyteknik/" target="_blank" rel="noopener">LinkedIn</a></p></div>
     </div>
     <div class="fbot"><span>© 2026 BeyTeknik Aydınlatma</span><span class="status"><i></i>Fabrika çalışıyor · Teklif hattı açık</span></div>
@@ -1223,13 +1216,7 @@ const mq=$('#mq1');const unit='<span><b>Design it.</b> Develop it. <em>Produce i
 const mqT=gsap.to(mq,{xPercent:-50,ease:'none',duration:26,repeat:-1});
 ScrollTrigger.create({onUpdate:s=>{const v=s.getVelocity();gsap.to(mqT,{timeScale:Math.sign(v||1)*Math.min(5,1+Math.abs(v)/400),duration:.2,overwrite:true,onComplete:()=>gsap.to(mqT,{timeScale:Math.sign(v||1),duration:1})})}});
 
-/* ---------- manifesto ---------- */
-const mp=$('#mani');
-mp.innerHTML=mp.textContent.split(' ').map(w=>{let c='w';if(w[0]==='*'){c+=' hl sf';w=w.slice(1)}if(w[0]==='^'){c+=' hl';w=w.slice(1)}return `<span class="${c}">${w}</span>`}).join(' ');
-// "gece yanan ışıklardır." all highlighted
-(()=>{const ws=$$('#mani .w');const i=ws.findIndex(w=>w.classList.contains('sf'));[1,2].forEach(k=>ws[i+k]&&ws[i+k].classList.add('hl','sf'))})();
-if(!RM)gsap.to('#mani .w',{opacity:1,stagger:.06,ease:'none',scrollTrigger:{trigger:'#mani',start:'top 78%',end:'bottom 42%',scrub:true}});
-gsap.to('#mani .w.hl',{textShadow:'0 0 24px rgba(255,170,60,.55)',scrollTrigger:{trigger:'#mani',start:'center 50%',toggleActions:'play none none reverse'}});
+
 
 /* ---------- products horizontal ---------- */
 /* kayan serit kaldirildi: kartlar tek sayfada, sirayla belirir */
@@ -1421,7 +1408,10 @@ $('#form').addEventListener('submit',e=>{
   const tabs=$('#ktTabs'),grid=$('#ktGrid'),bas=$('#ktBaslik'),ara=$('#ktAra');
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const EK_AD={armatur:'Armatür',aplik:'Duvar apliği',mobilya:'Kent mobilyası'};
-  const kats=K.kategoriler.map((k,i)=>({...k,no:i+1,adet:K.urunler.filter(u=>u.kat===k.id).length}));
+  const BIRLES={meydan:'yol',setustu:'bollard',gunes:'modern'};
+  const YENI={yol:{ad:'Cadde, Yol ve Meydan Direkleri',kisa:'Bulvar, ana arter, şehir girişi ve kent meydanları'},bollard:{ad:'Bollard ve Peyzaj Armatürleri',kisa:'Yürüyüş yolu, bahçe, giriş, sahil, duvar ve set üstü'},modern:{kisa:'Park, bahçe, kampüs ve peyzaj aksları, güneş enerjili modeller dahil'}};
+  K.urunler.forEach(u=>{u.sekme=BIRLES[u.kat]||u.kat});
+  const kats=K.kategoriler.filter(k=>!BIRLES[k.id]).map((k,i)=>({...k,...(YENI[k.id]||{}),no:i+1,adet:K.urunler.filter(u=>u.sekme===k.id).length}));
   if(K.ek.length)kats.push({id:'ek',ad:'Tamamlayıcı Ürünler',kisa:'Armatür, projektör, duvar aplikleri ve kent mobilyası',no:kats.length+1,adet:K.ek.length});
   let aktif=kats[0].id,liste=[];
   tabs.innerHTML=kats.map(k=>`<button role="tab" data-k="${k.id}">${esc(k.ad)}<small>${k.adet}</small></button>`).join('');
@@ -1440,7 +1430,7 @@ $('#form').addEventListener('submit',e=>{
     const k=kats.find(x=>x.id===aktif);
     bas.innerHTML=`${k.img?`<img src="${k.img.s}" alt="" loading="lazy">`:'<div></div>'}<div><div class="n">Bölüm ${String(k.no).padStart(2,'0')} · ${k.adet} model</div><h3>${esc(k.ad)}</h3><p>${esc(k.kisa)}</p></div>`;
     if(aktif==='ek'){liste=[];grid.innerHTML=K.ek.map(ekKart).join('');}
-    else{liste=K.urunler.filter(u=>u.kat===aktif);grid.innerHTML=liste.map(kart).join('');}
+    else{liste=K.urunler.filter(u=>u.sekme===aktif);grid.innerHTML=liste.map(kart).join('');}
     if(!RM)gsap.from('#ktGrid .kc',{y:24,opacity:0,duration:.6,stagger:.02,ease:'power3.out',clearProps:'all'});
     ScrollTrigger.refresh();
   }
@@ -1448,7 +1438,7 @@ $('#form').addEventListener('submit',e=>{
   let zt;ara.addEventListener('input',()=>{clearTimeout(zt);zt=setTimeout(ciz,180)});
   grid.addEventListener('click',e=>{const b=e.target.closest('.kc[data-i]');if(b)ac(+b.dataset.i)});
   /* ürün ailesi kartından ya da alt menüden kataloğa git */
-  const git=k=>{if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('.kt-ara')||$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-100,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
+  const git=k=>{k=BIRLES[k]||k;if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('.kt-ara')||$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-100,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
   document.addEventListener('click',e=>{const a=e.target.closest('[data-kat]');if(!a||a.closest('#katalog'))return;if(e.target.closest('a.btn'))return;e.preventDefault();git(a.dataset.kat);});
   document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const a=e.target.closest&&e.target.closest('.pc[data-kat]');if(a){e.preventDefault();git(a.dataset.kat);}});
 
