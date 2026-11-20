@@ -676,6 +676,10 @@ nav.vtb:not(.on){background:rgba(20,20,20,.86)}
 .kc:hover .ki img{transform:scale(1.14)}
 /* genis yakin cekimler buyuyunce yanlardan kesilmesin (SL-1380), zeminden buyusun */
 .kc .ki img{max-width:calc(100% / 1.14);transform-origin:50% 100%}
+/* uzun ince urunler (SL-7030, SL-7040) buyuyunce tepeden kesilmesin */
+.kc.tam .ki img{max-height:calc(100% / 1.14)}
+/* buyuyunce hicbir kartta tepe kesilmesin (SL-1510, 1540, 1710 ve 30 kart daha, 2026-11-20) */
+.kc .ki img{max-height:calc(100% / 1.14)}
 @media (hover:none){.kc:hover{transform:none}.kc:hover .ki img{transform:none}}
 
 /* GUNDUZ: beyaz zemin */
@@ -737,10 +741,60 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
 .pc.last h3{font-size:clamp(1.8rem,3vw,2.6rem)}
 .pc.last p{max-width:42rem;margin:1rem auto 1.4rem}
 .hs-bar{display:none}
-@media (max-width:1100px){.track{grid-template-columns:repeat(2,1fr)}}
+.track{grid-template-columns:repeat(5,1fr);gap:16px}
+@media (max-width:1100px){html .track{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.track{grid-template-columns:1fr}.pc .vis{height:52vh;max-height:420px}.pc .vis img{max-height:calc(min(52vh,420px) - 2.4rem)}}
+
+/* LINEER TASARLA: siz isteyin biz yapalim */
+.ln{margin:0 0 2.4rem;border:1px solid var(--line2);border-radius:1.8rem;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);background:linear-gradient(140deg,rgba(255,178,63,.06),transparent 55%)}
+.ln[hidden]{display:none}
+.ln-on.gunduz{background:linear-gradient(#cfd9e6,#e9eef4)}
+.ln-on.gunduz .ln-ol{color:#3b4352}
+.ln-on{position:relative;background:radial-gradient(120% 80% at 50% 110%,#1b2336 0%,#070a12 60%);min-height:460px;display:flex;flex-direction:column}
+.ln-on svg{flex:1;width:100%;height:100%;max-height:520px;display:block}
+.ln-on .ln-et{position:absolute;left:1rem;top:1rem;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:#FFB23F;font-weight:600}
+.ln-on .ln-ol{position:absolute;right:1rem;top:1rem;font-size:.78rem;color:#c6cbd6;text-align:right;line-height:1.5}
+.ln-gece{position:absolute;left:1rem;bottom:1rem;display:flex;gap:.4rem}
+.ln-gece button{font:inherit;font-size:.75rem;padding:.35rem .8rem;border-radius:100px;border:1px solid rgba(255,255,255,.18);color:#dfe3ea;background:rgba(20,24,34,.6);cursor:pointer}
+.ln-gece button.on{background:#FFB23F;color:#140d02;border-color:#FFB23F}
+.ln-sag{padding:clamp(1.2rem,2.6vw,2rem)}
+.ln-sag .kick{margin-bottom:.5rem}
+.ln-sag h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.ln-sag>p{color:var(--mute);margin:.5rem 0 1.2rem;font-size:.95rem}
+.ln-g{margin-bottom:1rem}
+.ln-g>b{display:flex;justify-content:space-between;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:.45rem}
+.ln-g>b output{color:var(--amber);letter-spacing:0;text-transform:none;font-size:.9rem}
+.ln-s{display:flex;flex-wrap:wrap;gap:.4rem}
+.ln-s button{font:inherit;font-size:.85rem;padding:.45rem .85rem;border-radius:100px;border:1px solid var(--line2);background:transparent;color:var(--txt);cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;transition:border-color .2s,background .2s}
+.ln-s button:hover{border-color:var(--amber)}
+.ln-s button.on{background:var(--amber);border-color:var(--amber);color:#140d02;font-weight:600}
+.ln-s i{width:14px;height:14px;border-radius:50%;border:1px solid rgba(128,128,128,.5);display:inline-block}
+.ln-s svg{width:26px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round}
+.ln input[type=range]{width:100%;accent-color:#FFB23F}
+.ln-iki{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 1.2rem}
+.ln-oz{margin-top:1.2rem;padding:1rem 1.1rem;border-radius:1.1rem;border:1px dashed var(--line2);font-size:.88rem;line-height:1.55}
+.ln-oz code{font-family:inherit;font-weight:700;color:var(--amber);letter-spacing:.04em;word-break:break-all}
+.ln-oz small{display:block;color:var(--mute);margin-top:.4rem;font-size:.78rem}
+.ln-alt{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin-top:1rem}
+.ln-alt label{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--mute)}
+.ln-alt input{width:5.5rem;padding:.55rem .7rem;border-radius:.7rem;border:1px solid var(--line2);background:transparent;color:var(--txt);font:inherit}
+@keyframes lnRgb{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+.ln-rgb{animation:lnRgb 6s linear infinite}
+@media (max-width:900px){.ln{grid-template-columns:1fr}.ln-on{min-height:380px}.ln-on svg{max-height:400px}}
+@media (max-width:480px){.ln-iki{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.ln-rgb{animation:none}}
 </style>
 <script>try{if(localStorage.getItem("tema")==="gunduz")document.documentElement.classList.add("gunduz")}catch(e){}</script>
+<style id="coksatan">.cs-rz{position:absolute;top:12px;left:12px;z-index:2;background:#111;color:#fff;font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 10px;border-radius:20px;pointer-events:none}.kc .ki{position:relative}/* OZEL LINEER KARTI */
+.kc.oz-lin{background:#070B14;color:#fff;border:0;cursor:pointer;text-align:left}
+.kc.oz-lin .ki{background:radial-gradient(ellipse at 50% 120%,rgba(255,150,50,.45),transparent 65%),#070B14!important;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:26px 22px;gap:10px;height:100%}
+.kc.oz-lin svg{width:70%;fill:none;stroke:#FFB23F;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px rgba(255,178,63,.8))}
+.kc.oz-lin .oz-k{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#FFB23F;font-weight:700}
+.kc.oz-lin b{font-size:26px;line-height:1.02;font-weight:800;letter-spacing:-.02em}
+.kc.oz-lin b em{font-family:'Instrument Serif',serif;font-weight:400;color:#FFB23F}
+.kc.oz-lin small{font-size:13px;line-height:1.45;opacity:.75}
+.kc.oz-lin .oz-a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#FFB23F;font-weight:700}
+</style>
 </head>
 <body>
 
@@ -757,6 +811,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
         <a href="#katalog" data-kat="yol"><span class="th"><img src="img/aile_yol.webp" alt=""></span><span><b>Yol Direkleri</b><small>Cadde · Bulvar · Ana arter</small></span></a>
         <a href="#katalog" data-kat="meydan"><span class="th"><img src="img/aile_meydan.webp" alt=""></span><span><b>Meydan Direkleri</b><small>Kent meydanı · Büyük alanlar</small></span></a>
         <a href="#katalog" data-kat="bollard"><span class="th"><img src="img/aile_bollard.webp" alt=""></span><span><b>Bollard</b><small>Yürüyüş yolu · Peyzaj · Giriş</small></span></a>
+        <a href="#katalog" data-kat="lineer"><span class="th"><img src="img/aile_lineer.webp" alt=""></span><span><b>Lineer Aydınlatma</b><small>Cephe · Duvar · Peyzaj</small></span></a>
         <a href="#urunler" class="tum">Tüm ürün ailelerini görün <span>→</span></a>
       </div></div></li>
     <li><a href="#katalog">Katalog</a></li>
@@ -807,7 +862,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
   <div class="ph wrap">
     <div class="ph-top">
       <div><div class="kick">Ürün aileleri</div><h2>Her alana<br><span class="serif warm">doğru ışık.</span></h2></div>
-      <p class="sub">Dört ana seri. Her biri projenize özel ölçü, renk ve ışık dağılımıyla üretilebilir.</p>
+      <p class="sub">Beş ana seri. Her biri projenize özel ölçü, renk ve ışık dağılımıyla üretilebilir.</p>
     </div>
   </div>
   <div class="hs" id="hs">
@@ -828,9 +883,14 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
           <div class="chips"><span>Heykelsi form</span><span>Dekoratif LED</span><span>Özel tasarım</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc git" data-kat="bollard" tabindex="0" role="link"><div class="num">04</div>
-        <div class="vis"><div class="halo"></div><img src="img/aile_bollard.webp" alt="SL-7035 bollard serisi" loading="lazy" style="max-height:72%"><div class="floor"></div></div>
+        <div class="vis"><div class="halo"></div><img src="img/aile_bollard.webp" alt="SL-7030 bollard serisi" loading="lazy" style="max-height:72%"><div class="floor"></div></div>
         <div class="info"><div class="use">Yürüyüş yolu · Peyzaj · Giriş</div><h3>Bollard</h3><p>Yolu göz kamaştırmadan gösteren alçak ışık. Beş farklı boy, tek tasarım dili.</p>
           <div class="chips"><span>Beş boy</span><span>Çift ışık penceresi</span><span>PMMA lens</span><span>Alüminyum gövde</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
+      </article>
+      <article class="pc git" data-kat="lineer" tabindex="0" role="link"><div class="num">05</div>
+        <div class="vis"><div class="halo"></div><img src="img/aile_lineer.webp" alt="SL-2601, SL-2603 ve SL-2605 lineer armatürler" loading="lazy"><div class="floor"></div></div>
+        <div class="info"><div class="use">Cephe · Duvar · Peyzaj</div><h3>Lineer Aydınlatma</h3><p>Opal ve şeffaf kapaklı ışık çubukları. Cephede, duvarda, merdivende ve peyzajda kesintisiz bir çizgi halinde ışık.</p>
+          <div class="chips"><span>Opal kapak</span><span>Şeffaf kapak</span><span>Açılı profil</span><span>Alüminyum gövde</span></div><span class="gor">Modelleri görün <span class="ar">→</span></span></div>
       </article>
       <article class="pc last"><div>
         <h3>Aklınızdaki direk<br><span class="serif">listede yok mu?</span></h3>
@@ -847,12 +907,26 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
   <div class="wrap">
     <div class="kt-top">
       <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde.</span></h2>
-        <p class="sub">Dört ürün ailesi, sade ve kolay gezilir. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
+        <p class="sub">Beş ürün ailesi, sade ve kolay gezilir. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
         <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (17 MB) <span class="ar">↓</span></a></div>
       <label class="kt-ara"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="ktAra" type="search" placeholder="Model kodu ya da ad ara" aria-label="Katalogda ara"></label>
     </div>
     <div class="kt-tabs" id="ktTabs" role="tablist"></div>
     <div class="kt-baslik" id="ktBaslik"></div>
+    <div class="ln" id="lnTas" hidden aria-label="Kendi lineer armatürünüzü tasarlayın">
+      <div class="ln-on"><span class="ln-et">Canlı önizleme</span><div class="ln-ol" id="lnOl"></div>
+        <svg id="lnSvg" viewBox="0 0 320 440" role="img" aria-label="Tasarladığınız direğin çizimi"></svg>
+        <div class="ln-gece"><button type="button" data-z="gece" class="on">Gece</button><button type="button" data-z="gunduz">Gündüz</button></div></div>
+      <div class="ln-sag">
+        <div class="kick">Siz isteyin, biz yapalım</div>
+        <h3>Kendi lineerinizi tasarlayın</h3>
+        <p>Formu, boyu, ışığı ve rengi seçin. Tasarımınızı mühendislerimiz projenize göre üretime hazırlasın.</p>
+        <div id="lnSec"></div>
+        <div class="ln-oz" id="lnOz"></div>
+        <div class="ln-alt"><label>Adet <input type="number" id="lnAdet" min="1" value="10"></label>
+          <button type="button" class="btn pri" id="lnTeklif">Bu tasarım için teklif isteyin <span class="ar">→</span></button></div>
+      </div>
+    </div>
     <div class="kt-grid" id="ktGrid"></div>
     <div class="kt-alt"><a href="#teklif" class="btn pri">Projeniz için teklif isteyin <span class="ar">→</span></a></div>
   </div>
@@ -1063,6 +1137,7 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
 })();
 </script>
 <script src="js/katalog.js"></script>
+<script src="js/lineer.js"></script>
 <script src="js/projeler.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1418,17 +1493,30 @@ $('#form').addEventListener('submit',e=>{
   const EK_AD={armatur:'Armatür',aplik:'Duvar apliği',mobilya:'Kent mobilyası'};
   const BIRLES={setustu:'bollard',gunes:'modern'};
   const YENI={modern:{ad:'Modern Park Bahçe Direkleri',kisa:'Park, bahçe, kampüs ve peyzaj aksları, güneş enerjili modeller dahil'},yol:{ad:'Yol Direkleri',kisa:'Cadde, bulvar, ana arter ve şehir girişleri'},meydan:{ad:'Meydan Direkleri',kisa:'Kent meydanı, stadyum çevresi, geniş alanlar'},bollard:{ad:'Bollard',kisa:'Yürüyüş yolu, bahçe, giriş, sahil, duvar ve set üstü'}};
-  const SIRA=['modern','yol','meydan','bollard'];
+  const SIRA=['modern','yol','meydan','bollard','lineer'];
+  /* LINEER: sanal bolum, urunler kendi bolumunde de kalir */
+  const LINEER=['SL-2010','SL-2020','SL-2030','SL-2040','SL-2050','SL-2070','SL-2100','SL-5000'];
+  {const o=K.urunler.find(u=>u.kod==='SL-2070');if(!K.kategoriler.some(k=>k.id==='lineer'))K.kategoriler.push({id:'lineer',ad:'Lineer Aydınlatma',kisa:'Sarkıt, sıva üstü, sıva altı ve duvar lineerleri; ölçüleri siz belirleyin',img:{s:'img/aile_lineer.webp',w:872,h:1357}});}
+  if(window.LINEER_URUN&&!K.urunler.some(u=>u.kat==='lineer'))K.urunler.push(...window.LINEER_URUN);
+  const bolumde=(u,k)=>u.sekme===k;
+  const LIN=[['SL-2601','Opal kapaklı lineer armatür'],['SL-2602','Opal kapaklı ince lineer armatür'],['SL-2603','Şeffaf kapaklı lineer armatür'],['SL-2604','Şeffaf kapaklı ince lineer armatür'],['SL-2605','Açılı profil lineer armatür']];
+  const OZEL_KART=`<button class="kc oz-lin" type="button"><div class="ki"><svg viewBox="0 0 120 60" aria-hidden="true"><path d="M6 50V14h40v26h34V8h34"/></svg><span class="oz-k">Özel tasarım</span><b>Ölçüleri<br><em>siz belirleyin.</em></b><small>L, U, kare ya da serbest form. İstediğiniz boy, ışık rengi ve gövde rengiyle üretiyoruz.</small><span class="oz-a">Ölçünüzü gönderin →</span></div></button>`;
+  const linKart=([k,a])=>`<div class="kc ek byz"><div class="ki"><img src="img/lineer/${k}.webp" alt="${esc(k+' '+a)}" loading="lazy"></div><div class="kt"><b>${esc(k)}</b><span>${esc(a)}</span></div></div>`;
+
   K.urunler.forEach(u=>{u.sekme=BIRLES[u.kat]||u.kat});
-  const kats=SIRA.map(id=>K.kategoriler.find(k=>k.id===id)).filter(Boolean).map((k,i)=>({...k,...YENI[k.id],no:i+1,adet:K.urunler.filter(u=>u.sekme===k.id).length}));
+  const kats=SIRA.map(id=>K.kategoriler.find(k=>k.id===id)).filter(Boolean).map((k,i)=>({...k,...YENI[k.id],no:i+1,adet:K.urunler.filter(u=>bolumde(u,k.id)).length}));
   let aktif=kats[0].id,liste=[];
   tabs.innerHTML=kats.map(k=>`<button role="tab" data-k="${k.id}">${esc(k.ad)}<small>${k.adet}</small></button>`).join('');
-  const kart=(u,i)=>{const g=u.kart||u.hero||u.detay||{};return `<button class="kc${u.kat!=='bollard'?' byz':''}${g.tam?' tam':''}" data-i="${i}"><div class="ki">${g.s?`<img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}">`:`<div class="kyok"><b>${esc(u.kod)}</b><small>Görsel hazırlanıyor</small></div>`}</div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
+  /* CokSatan siralama: once cok satanlar, sonra resimdeki adet 4+,3,2,1 */
+  const COK=["7030", "7032", "7035", "7040", "7050", "7060", "7110", "7170", "7120", "7180", "7200", "7310", "1000", "1030", "1040", "1790", "2000", "2010", "2060", "2070", "6000", "6020", "6060", "5060", "5070", "5010", "9050", "9055"],ADET={"2300":4,"7010":2,"7030":3,"7050":2,"7060":2,"7070":3,"7080":4,"7090":5,"7100":3,"7120":3,"7160":4,"7200":3,"7320":2,"7340":4,"7350":3,"7360":3,"7390":3,"7400":5,"7410":3,"7610":3,"9050":3,"9055":3};
+  const kno=u=>u.kod.replace('SL-',''),cokMu=u=>COK.includes(kno(u)),adetAl=u=>Math.min(4,ADET[kno(u)]||1);
+  const siraAl=u=>(cokMu(u)?0:10)+(['9050','9055'].includes(kno(u))?3.5:4-adetAl(u));
+  const kart=(u,i)=>{const g=u.kart||u.hero||u.detay||{};return `<button class="kc${u.kat!=='bollard'?' byz':''}${g.tam?' tam':''}" data-i="${i}"><div class="ki">${cokMu(u)?'<span class="cs-rz">Çok satan</span>':''}${g.s?`<img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}">`:`<div class="kyok"><b>${esc(u.kod)}</b><small>Görsel hazırlanıyor</small></div>`}</div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
   const ekKart=u=>`<div class="kc ek byz"><div class="ki"><img src="${u.img.s}" alt="${esc(u.kod)}" loading="lazy" width="${u.img.w}" height="${u.img.h}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.alt||EK_AD[u.grup]||'')}</span></div></div>`;
   function ciz(){
     const q=ara.value.trim().toLocaleLowerCase('tr');
     $$('#ktTabs button').forEach(b=>b.classList.toggle('on',!q&&b.dataset.k===aktif));
-    if(q){
+    if(q){{const lt=$('#lnTas');if(lt)lt.hidden=true;}
       liste=K.urunler.filter(u=>(u.kod+' '+u.ad+' '+u.metin).toLocaleLowerCase('tr').includes(q));
       const ekler=K.ek.filter(u=>(u.kod+' '+u.alt).toLocaleLowerCase('tr').includes(q));
       bas.innerHTML=`<div></div><div><div class="n">Arama</div><h3>“${esc(ara.value.trim())}”</h3><p>${liste.length+ekler.length} sonuç</p></div>`;
@@ -1436,15 +1524,18 @@ $('#form').addEventListener('submit',e=>{
       ScrollTrigger.refresh();return;
     }
     const k=kats.find(x=>x.id===aktif);
+    {const lt=$('#lnTas');if(lt)lt.hidden=true;}
     bas.innerHTML=`${k.img?`<img src="${k.img.s}" alt="" loading="lazy">`:'<div></div>'}<div><div class="n">Bölüm ${String(k.no).padStart(2,'0')} · ${k.adet} model</div><h3>${esc(k.ad)}</h3><p>${esc(k.kisa)}</p></div>`;
     if(aktif==='ek'){liste=[];grid.innerHTML=K.ek.map(ekKart).join('');}
-    else{liste=K.urunler.filter(u=>u.sekme===aktif);grid.innerHTML=liste.map(kart).join('');}
+    else if(aktif==='lineer'){liste=K.urunler.filter(u=>u.kat==='lineer');grid.innerHTML=liste.map(kart).join('')+OZEL_KART;}
+    else{liste=K.urunler.filter(u=>bolumde(u,aktif)).map((u,j)=>[u,j]).sort((x,y)=>siraAl(x[0])-siraAl(y[0])||x[1]-y[1]).map(x=>x[0]);grid.innerHTML=liste.map(kart).join('');}
     if(!RM)gsap.from('#ktGrid .kc',{y:24,opacity:0,duration:.6,stagger:.02,ease:'power3.out',clearProps:'all'});
     ScrollTrigger.refresh();
   }
   tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;aktif=b.dataset.k;ara.value='';ciz();});
   let zt;ara.addEventListener('input',()=>{clearTimeout(zt);zt=setTimeout(ciz,180)});
   grid.addEventListener('click',e=>{const b=e.target.closest('.kc[data-i]');if(b)ac(+b.dataset.i)});
+  grid.addEventListener('click',e=>{if(!e.target.closest('.oz-lin'))return;const m=$('#fm');if(m&&!m.value.includes('Özel tasarım lineer'))m.value=(m.value?m.value+'\n':'')+'Özel tasarım lineer için teklif almak istiyoruz. Ölçü / form: ';const t=$('#teklif');if(t){lenis?lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'});}setTimeout(()=>m&&m.focus({preventScroll:true}),1500);});
   /* ürün ailesi kartından ya da alt menüden kataloğa git */
   const git=k=>{k=BIRLES[k]||k;if(!kats.some(x=>x.id===k))return;aktif=k;ara.value='';ciz();const h=$('.kt-ara')||$('#katalog');if(lenis)lenis.scrollTo(h,{offset:-100,duration:1.4});else h.scrollIntoView({behavior:'smooth'});};
   document.addEventListener('click',e=>{const a=e.target.closest('[data-kat]');if(!a||a.closest('#katalog'))return;if(e.target.closest('a.btn'))return;e.preventDefault();git(a.dataset.kat);});
@@ -1530,5 +1621,72 @@ addEventListener('load',()=>ScrollTrigger.refresh());
 <script>(function(){var b=document.getElementById('temaBtn'),r=document.documentElement,m=document.querySelector('meta[name=theme-color]');
 function s(){var g=r.classList.contains('gunduz');if(m)m.content=g?'#ffffff':'#141414';b.setAttribute('aria-pressed',g)}s();
 b.addEventListener('click',function(){r.classList.toggle('gunduz');try{localStorage.setItem('tema',r.classList.contains('gunduz')?'gunduz':'gece')}catch(e){}s()})})();</script>
+<script>
+/* ---------- LINEER TASARLA: siz isteyin biz yapalim ---------- */
+(()=>{
+  const kok=$('#lnTas');if(!kok)return;
+  const ikon={yan:'<path d="M6 19V3h16"/>',t:'<path d="M14 19V3M4 3h20"/>',l:'<path d="M6 19V3h16v4"/>',egik:'<path d="M6 19V5l18-3"/>',kolon:'<path d="M14 19V2"/><path d="M14 4v10" stroke-width="5" opacity=".5"/>',cift:'<path d="M10 19V2M18 19V2"/>'};
+  const S={
+    form:{ad:'Form',v:[['yan','Tek kollu'],['t','T başlık'],['l','L kollu'],['egik','Eğik'],['kolon','Işık şeritli kolon'],['cift','Çift gövde']]},
+    isik:{ad:'Işık rengi',v:[['2700','2700K sıcak','#FFB066'],['3000','3000K sıcak beyaz','#FFC788'],['4000','4000K gün ışığı','#FFEACB'],['5700','5700K soğuk','#E6EEFF'],['rgb','RGB renk değiştiren','conic-gradient(red,yellow,lime,cyan,blue,magenta,red)']]},
+    renk:{ad:'Gövde rengi',v:[['7016','Antrasit RAL 7016','#383E42'],['9005','Siyah RAL 9005','#0e0e10'],['9006','Gri RAL 9006','#A1A1A0'],['9016','Beyaz RAL 9016','#F1F0EA'],['corten','Corten görünüm','#8B4A2B'],['ozel','Özel RAL','linear-gradient(135deg,#c33,#3a6,#36c)']]},
+    guc:{ad:'Güç',v:[['20','20 W'],['40','40 W'],['60','60 W'],['80','80 W'],['120','120 W']]},
+    ip:{ad:'Koruma',v:[['65','IP65'],['66','IP66'],['67','IP67']]},
+    kumanda:{ad:'Kumanda',v:[['ac','Aç / kapa'],['dim','Kısılabilir (DIM)'],['dali','DALI'],['sensor','Hareket sensörlü']]}
+  };
+  const D={form:'t',isik:'3000',renk:'7016',guc:'40',kumanda:'dim',ip:'66',boy:5,uz:120};
+  const ad=(k,v)=>(S[k].v.find(x=>x[0]===v)||[])[1]||v;
+  const m2=v=>String(v).replace('.',',');
+  const sec=$('#lnSec');
+  const grup=k=>`<div class="ln-g"><b>${S[k].ad}</b><div class="ln-s" data-k="${k}">${S[k].v.map(x=>`<button type="button" data-v="${x[0]}">${k==='form'?`<svg viewBox="0 0 28 22" aria-hidden="true">${ikon[x[0]]}</svg>`:''}${x[2]?`<i style="background:${x[2]}"></i>`:''}${x[1]}</button>`).join('')}</div></div>`;
+  sec.innerHTML=grup('form')+`<div class="ln-iki"><div class="ln-g"><b>Direk yüksekliği <output id="lnBoyO"></output></b><input type="range" id="lnBoy" min="3" max="8" step="0.5" aria-label="Direk yüksekliği"></div><div class="ln-g"><b><span id="lnUzA">Armatür boyu</span> <output id="lnUzO"></output></b><input type="range" id="lnUz" min="60" max="180" step="10" aria-label="Armatür boyu"></div></div>`+grup('isik')+grup('renk')+`<div class="ln-iki">${grup('guc')}${grup('ip')}</div>`+grup('kumanda');
+  $('#lnBoy').value=D.boy;$('#lnUz').value=D.uz;
+  sec.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;D[b.parentNode.dataset.k]=b.dataset.v;ciz();});
+  $('#lnBoy').oninput=e=>{D.boy=+e.target.value;ciz()};$('#lnUz').oninput=e=>{D.uz=+e.target.value;ciz()};
+  let zemin='gece';
+  kok.querySelector('.ln-gece').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;zemin=b.dataset.z;kok.querySelectorAll('.ln-gece button').forEach(x=>x.classList.toggle('on',x===b));ciz();});
+  const ISIK={2700:'#FFB066',3000:'#FFC788',4000:'#FFEACB',5700:'#E6EEFF',rgb:'#ff3b6b'};
+  const GOV={7016:'#3b4247','9005':'#141416','9006':'#a3a5a6','9016':'#eeede6',corten:'#8B4A2B',ozel:'#2f6fb0'};
+  function svg(){
+    const g=zemin==='gece',zy=405,cx=150,ph=D.boy*44,top=zy-ph,L=D.uz*.55,c=ISIK[D.isik],gv=GOV[D.renk],on=g?1:.18,gl=Math.min(1,.35+D.guc/120*.65)*on;
+    let bas='',isik='';
+    const cizgi=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${gv}" stroke-width="9" stroke-linecap="square"/><line x1="${x1}" y1="${y1+4.5}" x2="${x2}" y2="${y2+4.5}" stroke="${c}" stroke-width="2.6" opacity="${.4+.6*on}" filter="url(#lnBl1)"/><line x1="${x1}" y1="${y1+4.5}" x2="${x2}" y2="${y2+4.5}" stroke="${g?'#fff':c}" stroke-width="1.2" opacity="${.3+.7*on}"/>`;
+    const huzme=(x1,x2,y)=>`<path d="M${x1} ${y}L${x2} ${y}L${x2+(x2-x1)*.6+40} ${zy}L${x1-(x2-x1)*.6-40} ${zy}Z" fill="url(#lnHz)" opacity="${gl}"/>`;
+    const havuz=(x,w)=>`<ellipse cx="${x}" cy="${zy+3}" rx="${w}" ry="13" fill="url(#lnHv)" opacity="${gl}"/>`;
+    const serit=(x,y,sl)=>`<rect x="${x-2}" y="${y}" width="4" height="${sl}" fill="${g?'#fff':c}" opacity="${.4+.6*on}"/><rect x="${x-8}" y="${y}" width="16" height="${sl}" fill="${c}" opacity="${.6*on}" filter="url(#lnBl2)"/>`;
+    let direk=`<rect x="${cx-5}" y="${top}" width="10" height="${ph}" fill="${gv}"/>`;
+    if(D.form==='yan'){bas=cizgi(cx,top,cx+L,top);isik=huzme(cx+6,cx+L,top+7)+havuz(cx+L/2,L*.9+40)}
+    else if(D.form==='t'){bas=cizgi(cx-L/2,top,cx+L/2,top);isik=huzme(cx-L/2,cx+L/2,top+7)+havuz(cx,L*.9+40)}
+    else if(D.form==='l'){bas=cizgi(cx,top,cx+L,top)+`<line x1="${cx+L}" y1="${top}" x2="${cx+L}" y2="${top+18}" stroke="${gv}" stroke-width="9"/>`;isik=huzme(cx+8,cx+L-8,top+7)+havuz(cx+L*.6,L*.9+40)}
+    else if(D.form==='egik'){const y2=top-L*.28;bas=cizgi(cx,top,cx+L,y2);isik=`<path d="M${cx+6} ${top+6}L${cx+L} ${y2+6}L${cx+L*1.9+40} ${zy}L${cx-L*.5-30} ${zy}Z" fill="url(#lnHz)" opacity="${gl}"/>`+havuz(cx+L*.6,L*.9+40)}
+    else if(D.form==='kolon'){const sl=Math.min(ph-20,D.uz*1.1);direk=`<rect x="${cx-8}" y="${top}" width="16" height="${ph}" fill="${gv}"/>`;bas=serit(cx,top+10,sl);isik=`<ellipse cx="${cx}" cy="${top+10+sl/2}" rx="70" ry="${sl/2+30}" fill="url(#lnHv)" opacity="${gl*.7}"/>`+havuz(cx,80)}
+    else if(D.form==='cift'){const sl=Math.min(ph-14,D.uz*1.1);direk=`<rect x="${cx-14}" y="${top}" width="9" height="${ph}" fill="${gv}"/><rect x="${cx+5}" y="${top}" width="9" height="${ph}" fill="${gv}"/><rect x="${cx-14}" y="${top}" width="28" height="6" fill="${gv}"/>`;bas=serit(cx,top+8,sl);isik=`<ellipse cx="${cx}" cy="${top+8+sl/2}" rx="80" ry="${sl/2+30}" fill="url(#lnHv)" opacity="${gl*.7}"/>`+havuz(cx,90)}
+    const yc=(top+zy)/2;
+    const olcu=`<g stroke="${g?'#7c8597':'#6b7280'}" stroke-width="1" fill="${g?'#9aa3b5':'#4b5563'}" font-size="12" font-family="Outfit,sans-serif"><line x1="40" y1="${top}" x2="40" y2="${zy}"/><line x1="35" y1="${top}" x2="45" y2="${top}"/><line x1="35" y1="${zy}" x2="45" y2="${zy}"/><text x="30" y="${yc}" stroke="none" text-anchor="middle" transform="rotate(-90 30 ${yc})">${m2(D.boy)} m</text></g>`;
+    const insan=`<g fill="${g?'#2a3346':'#9ca3af'}"><circle cx="262" cy="${zy-66}" r="6"/><rect x="255" y="${zy-58}" width="14" height="32" rx="5"/><rect x="256" y="${zy-30}" width="5" height="30" rx="2"/><rect x="263" y="${zy-30}" width="5" height="30" rx="2"/></g>`;
+    const rgb=D.isik==='rgb'&&g?' class="ln-rgb"':'';
+    return `<defs><linearGradient id="lnHz" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity=".55"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient><radialGradient id="lnHv"><stop offset="0" stop-color="${c}" stop-opacity=".7"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient><filter id="lnBl1" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="2.5"/></filter><filter id="lnBl2" x="-200%" y="-20%" width="500%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs><rect x="-600" y="${zy}" width="1520" height="40" fill="${g?'#0c111c':'#b9c2ce'}"/><g${rgb}>${isik}</g>${olcu}${insan}${direk}<g${rgb}>${bas}</g><rect x="${cx-16}" y="${zy-6}" width="32" height="6" fill="${gv}"/>`;
+  }
+  const kod=()=>`BT-LN-${D.form.toUpperCase()}-${m2(D.boy)}M-${D.uz}-${D.guc}W-${D.isik==='rgb'?'RGB':D.isik+'K'}-${D.renk.toUpperCase()}-IP${D.ip}`;
+  const lm=()=>D.isik==='rgb'?null:Math.round(D.guc*({2700:115,3000:122,4000:130,5700:130}[D.isik])/100)*100;
+  const serit=()=>D.form==='kolon'||D.form==='cift';
+  const ozet=()=>`${ad('form',D.form)}, ${m2(D.boy)} m direk, ${serit()?'ışık şeridi':'armatür'} ${D.uz} cm, ${D.guc} W, ${ad('isik',D.isik)}, ${ad('renk',D.renk)}, IP${D.ip}, ${ad('kumanda',D.kumanda)}`;
+  function ciz(){
+    sec.querySelectorAll('.ln-s').forEach(gp=>gp.querySelectorAll('button').forEach(b=>b.classList.toggle('on',D[gp.dataset.k]===b.dataset.v)));
+    $('#lnBoyO').textContent=m2(D.boy)+' m';$('#lnUzO').textContent=D.uz+' cm';
+    $('#lnUzA').textContent=serit()?'Işık şeridi boyu':'Armatür boyu';
+    $('#lnSvg').innerHTML=svg();kok.querySelector('.ln-on').classList.toggle('gunduz',zemin!=='gece');
+    const l=lm();$('#lnOl').innerHTML=`${D.guc} W<br>${l?'yaklaşık '+l.toLocaleString('tr-TR')+' lm':'RGB, renk değiştiren'}`;
+    $('#lnOz').innerHTML=`Tasarım kodunuz: <code>${kod()}</code><br>${ozet()}.<small>Ölçüler ve ışık değerleri ön bilgidir. Nihai ölçü, ışık hesabı ve fiyat projenize göre mühendislerimizce hazırlanır.</small>`;
+  }
+  $('#lnTeklif').onclick=()=>{
+    const m=$('#fm'),a=Math.max(1,+$('#lnAdet').value||1);
+    m.value=(m.value?m.value+'\n':'')+`Kendi tasarımımız lineer direk (${kod()}): ${ozet()}. Adet: ${a}.`;
+    const t=$('#teklif');lenis?lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>m.focus({preventScroll:true}),1500);
+  };
+  ciz();
+})();
+</script>
 </body>
 </html>
