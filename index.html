@@ -548,6 +548,19 @@ body.km-acik{overflow:hidden}
 .kc:hover .ki img{transform:scale(1.06)}
 @media (hover:none){.kc:hover{transform:none;box-shadow:none}.kc:hover .ki img{transform:none}}
 
+/* === PROFESYONEL YERLESIM (lamptime tarzi, 2026-11-19) ===
+   Urunun tamami gorunen kartlarda resim kutunun icinde esit bosluklu durur, zemine basar.
+   Yakin cekim (kesik) kartlar alta yaslanir. */
+.kc .ki{padding:1.7rem 1.5rem 0}
+.kc.tam .ki{padding:1.7rem 1.5rem 1.5rem;align-items:flex-end}
+@media (max-width:700px){.kc .ki{padding:1rem .9rem 0}.kc.tam .ki{padding:1rem .9rem .9rem}}
+.kc.tam .ki img{max-height:100%}
+.kc .ki img{image-rendering:auto}
+.kc .kt b{font-weight:700;letter-spacing:.01em}
+.kc .kyok{align-self:center;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:#5b5b5b}
+.kc .kyok b{font-size:1.6rem;letter-spacing:.04em;color:#3d3d3d}
+.kc .kyok small{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em}
+
 /* === BELGE ROZETLERI (2026-11-19) === */
 .km .rz{display:flex;flex-wrap:wrap;gap:.55rem;margin:.9rem 0 .2rem}
 .km .rz span{display:flex;flex-direction:column;align-items:center;gap:.3rem;width:62px}
@@ -786,10 +799,6 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
 
 
 
-<!-- MARQUEE -->
-<div class="mq" aria-hidden="true">
-  <div class="row" id="mq1"></div>
-</div>
 
 <!-- PRODUCTS -->
 <section id="urunler">
@@ -1212,9 +1221,6 @@ gsap.to('#prog',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}
 gsap.to('.hero-c',{yPercent:-18,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
 
 /* ---------- marquee ---------- */
-const mq=$('#mq1');const unit='<span><b>Design it.</b> Develop it. <em>Produce it.</em></span>';mq.innerHTML=unit.repeat(4);
-const mqT=gsap.to(mq,{xPercent:-50,ease:'none',duration:26,repeat:-1});
-ScrollTrigger.create({onUpdate:s=>{const v=s.getVelocity();gsap.to(mqT,{timeScale:Math.sign(v||1)*Math.min(5,1+Math.abs(v)/400),duration:.2,overwrite:true,onComplete:()=>gsap.to(mqT,{timeScale:Math.sign(v||1),duration:1})})}});
 
 
 
@@ -1408,14 +1414,14 @@ $('#form').addEventListener('submit',e=>{
   const tabs=$('#ktTabs'),grid=$('#ktGrid'),bas=$('#ktBaslik'),ara=$('#ktAra');
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const EK_AD={armatur:'Armatür',aplik:'Duvar apliği',mobilya:'Kent mobilyası'};
-  const BIRLES={meydan:'yol',setustu:'bollard',gunes:'modern'};
-  const YENI={yol:{ad:'Cadde, Yol ve Meydan Direkleri',kisa:'Bulvar, ana arter, şehir girişi ve kent meydanları'},bollard:{ad:'Bollard ve Peyzaj Armatürleri',kisa:'Yürüyüş yolu, bahçe, giriş, sahil, duvar ve set üstü'},modern:{kisa:'Park, bahçe, kampüs ve peyzaj aksları, güneş enerjili modeller dahil'}};
+  const BIRLES={setustu:'bollard',gunes:'modern'};
+  const YENI={modern:{ad:'Modern Park Bahçe Direkleri',kisa:'Park, bahçe, kampüs ve peyzaj aksları, güneş enerjili modeller dahil'},yol:{ad:'Yol Direkleri',kisa:'Cadde, bulvar, ana arter ve şehir girişleri'},meydan:{ad:'Meydan Direkleri',kisa:'Kent meydanı, stadyum çevresi, geniş alanlar'},bollard:{ad:'Bollard',kisa:'Yürüyüş yolu, bahçe, giriş, sahil, duvar ve set üstü'}};
+  const SIRA=['modern','yol','meydan','bollard'];
   K.urunler.forEach(u=>{u.sekme=BIRLES[u.kat]||u.kat});
-  const kats=K.kategoriler.filter(k=>!BIRLES[k.id]).map((k,i)=>({...k,...(YENI[k.id]||{}),no:i+1,adet:K.urunler.filter(u=>u.sekme===k.id).length}));
-  if(K.ek.length)kats.push({id:'ek',ad:'Tamamlayıcı Ürünler',kisa:'Armatür, projektör, duvar aplikleri ve kent mobilyası',no:kats.length+1,adet:K.ek.length});
+  const kats=SIRA.map(id=>K.kategoriler.find(k=>k.id===id)).filter(Boolean).map((k,i)=>({...k,...YENI[k.id],no:i+1,adet:K.urunler.filter(u=>u.sekme===k.id).length}));
   let aktif=kats[0].id,liste=[];
   tabs.innerHTML=kats.map(k=>`<button role="tab" data-k="${k.id}">${esc(k.ad)}<small>${k.adet}</small></button>`).join('');
-  const kart=(u,i)=>{const g=u.kart||u.hero||u.detay||{};return `<button class="kc${u.kat!=='bollard'?' byz':''}" data-i="${i}"><div class="ki"><img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
+  const kart=(u,i)=>{const g=u.kart||u.hero||u.detay||{};return `<button class="kc${u.kat!=='bollard'?' byz':''}${g.tam?' tam':''}" data-i="${i}"><div class="ki">${g.s?`<img src="${g.s}" alt="${esc(u.kod+' '+u.ad)}" loading="lazy" width="${g.w||100}" height="${g.h||100}">`:`<div class="kyok"><b>${esc(u.kod)}</b><small>Görsel hazırlanıyor</small></div>`}</div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.ad)}</span></div></button>`};
   const ekKart=u=>`<div class="kc ek byz"><div class="ki"><img src="${u.img.s}" alt="${esc(u.kod)}" loading="lazy" width="${u.img.w}" height="${u.img.h}"></div><div class="kt"><b>${esc(u.kod)}</b><span>${esc(u.alt||EK_AD[u.grup]||'')}</span></div></div>`;
   function ciz(){
     const q=ara.value.trim().toLocaleLowerCase('tr');
