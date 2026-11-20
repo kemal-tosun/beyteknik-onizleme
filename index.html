@@ -674,6 +674,8 @@ nav.vtb:not(.on){background:rgba(20,20,20,.86)}
 /* YAKINLASMA: daha fazla */
 .kc:hover{transform:scale(1.06)}
 .kc:hover .ki img{transform:scale(1.14)}
+/* genis yakin cekimler buyuyunce yanlardan kesilmesin (SL-1380), zeminden buyusun */
+.kc .ki img{max-width:calc(100% / 1.14);transform-origin:50% 100%}
 @media (hover:none){.kc:hover{transform:none}.kc:hover .ki img{transform:none}}
 
 /* GUNDUZ: beyaz zemin */
