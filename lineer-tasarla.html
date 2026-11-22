@@ -114,6 +114,10 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .lejant{position:absolute;left:12px;bottom:12px;background:rgba(10,10,10,.8);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.7rem;color:var(--mute);display:none;z-index:2}
 .lejant .rmp{width:180px;height:8px;border-radius:4px;margin:5px 0 3px;background:linear-gradient(90deg,#08122e,#0b3d91,#0aa3c2,#25c76b,#e6dc2a,#ff8a1a,#ff2d2d)}
 .lejant .sk2{display:flex;justify-content:space-between}
+.durum .dlx{display:inline-flex;flex-direction:column;align-items:center;margin-right:12px;vertical-align:middle}.durum .dlx b{font-size:1.05rem;color:#fff}.durum .dlx span{font-size:.66rem;color:var(--mute)}
+.durum .dyz{display:inline-flex;align-items:center;gap:6px;font-weight:700;vertical-align:middle}.durum .dyz i{width:10px;height:10px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.durum small{display:block;margin-top:4px;color:var(--mute);font-size:.7rem}
+.durum.iyi{border-color:#2fbf71}.durum.iyi .dyz{color:#3ddc84}.durum.kar{border-color:#e5484d}.durum.kar .dyz{color:#ff6369}.durum.fazla{border-color:#f5a524}.durum.fazla .dyz{color:#ffb224}
 .durum{position:absolute;right:12px;top:12px;background:rgba(10,10,10,.82);border:1px solid var(--line);border-radius:10px;padding:.45rem .7rem;font-size:.78rem;z-index:2;max-width:60%}
 .durum b{color:var(--amber)}
 .cizbar{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:none;gap:8px;z-index:3;background:rgba(10,10,10,.88);border:1px solid var(--amber);border-radius:99px;padding:6px;align-items:center}
@@ -254,7 +258,7 @@ input[type=range]{width:100%;accent-color:var(--amber)}
   .kam button{padding:.3rem .55rem;font-size:.72rem}
   .altsek{grid-template-columns:repeat(3,1fr)}
 }
-@media (max-width:900px){.sahne:has(.secbar.ac) .durum{display:none}.yrd span{display:none}}
+@media (max-width:900px){.sahne:not(.uc):has(.secbar.ac) .durum{display:none}.yrd span{display:none}}
 @media print{.top,.sol,.bar,.tk,.btnr{display:none!important}.app{display:block}}
 </style>
 </head>
@@ -915,7 +919,10 @@ function ozet(){const M=toplamM(),W=M*S.guc,lm=M*lmM(),T=hedef();
     const tasan=S.hatlar.filter(disarda).map(h=>S.hatlar.indexOf(h)+1);if(tasan.length){renk='var(--bad)';m=`Hat ${tasan.join(', ')} odaya sığmıyor, duvardan taşıyor (kırmızı gösterildi). Boyunu kısaltın ya da döndürün. `+m;}}
   $('#yorum .dot').style.background=renk;$('#yorum span:last-child').textContent=m;
   const kd=gor==='3d'&&DIM<1?DIM:1;
-  $('#durum').innerHTML=M>0?`<b>${Math.round(ist.ort*kd)} lx</b> ortalama · en az ${Math.round(ist.mn*kd)} lx${kd<1?` · %${Math.round(kd*100)} kısık`:''} · ${m2(+M.toFixed(2))} m`:'Oda boş';
+  {const T=hedef(),su=ist.ort*kd,dr=x=>x<T*.8?['kar','Karanlık kalıyor']:x>T*1.3?['fazla','Fazla ışık']:['iyi','Uygun'],[c,y]=dr(su),[c2,y2]=dr(ist.ort);
+  $('#durum').className='durum '+(M>0?c:'');
+  $('#durum').innerHTML=M>0?`<div class="dlx"><b>${Math.round(su)} lx</b><span>şu an</span></div><div class="dlx"><b>${T} lx</b><span>hedef</span></div><div class="dyz"><i></i>${y}</div>`
+    +(kd<1?`<small>%${Math.round(kd*100)} kısık. Tam açınca ${Math.round(ist.ort)} lx, ${y2.toLocaleLowerCase('tr-TR')}.</small>`:'')+`<small>En az ${Math.round(ist.mn*kd)} lx · ${m2(+M.toFixed(2))} m hat</small>`:'Oda boş';}
   $('#lejant').style.display=(gor==='2d'&&harita==='lux'&&M>0)?'block':'none';
 }
 function kodu(){const P=prof();return `BT-LNR-${P.k.replace('SL-','')}-${S.kapak.slice(0,2).toUpperCase()}-${S.guc}W-${S.cct}K-${S.renk.toUpperCase()}-${m2(+toplamM().toFixed(1)).replace(',','.')}M`;}
