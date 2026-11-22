@@ -548,7 +548,7 @@ function ikon(tip){const h={tip};for(const[k,v]of Object.entries(SEK[tip].p))h[k
 
 /* ---------- durum ---------- */
 let S={oda:{tip:'salon',w:6,l:4.5,h:2.8},profil:'SL-3250',kapak:'opal',guc:10,cct:3000,renk:'9005',kumanda:'triak',hatlar:[],sayac:0,elle:{}};
-let sec=null, gor='3d', harita='lux', isikAcik=true;
+let sec=null, yeniHatIste=false, gor='3d', harita='lux', isikAcik=true;
 const gecmis=[],ileriY=[];
 function anlik(){return JSON.stringify(S)}
 function kaydet(){gecmis.push(anlik());if(gecmis.length>80)gecmis.shift();ileriY.length=0;butonDurum();}
@@ -697,7 +697,7 @@ function yeniHat(tip){const h={id:++S.sayac,tip,rot:0,ayna:false,cx:S.oda.w/2,cy
   if(['L','U','dikd','cerceve'].includes(tip)){h.a=yuv(Math.min(h.a,S.oda.w-1.2),.1);h.b=yuv(Math.min(h.b,S.oda.l-1.2),.1);}
   if(['kare','ucgen'].includes(tip))h.a=yuv(Math.min(h.a,m-1.2),.1);
   return h;}
-$('#sekil').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;cizBitir(true);kaydet();const h=yeniHat(b.dataset.t),eski=hs();
+$('#sekil').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;cizBitir(true);kaydet();const h=yeniHat(b.dataset.t),eski=hs()||(yeniHatIste?null:[...S.hatlar].reverse().find(x=>x.tip!=='serbest'));yeniHatIste=false;
   if(eski){h.id=eski.id;h.cx=eski.cx;h.cy=eski.cy;S.hatlar[S.hatlar.indexOf(eski)]=h;
     sigdir(h);}
   else{if(S.hatlar.length){h.cx+=.15*(S.hatlar.length%3);h.cy+=.15*(S.hatlar.length%3);}S.hatlar.push(h);}
@@ -706,7 +706,7 @@ $('#sekil').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if
 /* ---------- secili hat paneli ---------- */
 const hs=()=>S.hatlar.find(h=>h.id===sec);
 function secPanel(){const h=hs(),p=$('#secPan');p.classList.toggle('ac',!!h);
-  $('#sekilIpucu').innerHTML=h?'<b style="color:var(--amber)">Seçili hattın şekli değişir.</b> Ayrı bir hat eklemek için aşağıdaki “yeni hat ekle” düğmesine basın ya da plandaki boş bir yere dokunun.':'Şekle dokunun, odaya yeni bir hat olarak gelsin.';
+  $('#sekilIpucu').innerHTML=h?'<b style="color:var(--amber)">Seçili hattın şekli değişir.</b> Ayrı bir hat eklemek için aşağıdaki “yeni hat ekle” düğmesine basın.':(yeniHatIste||!S.hatlar.length?'Şekle dokunun, odaya yeni bir hat olarak gelsin.':'Yeni seçtiğiniz şekil öncekinin yerini alır. Ayrı bir hat için “yeni hat ekle” düğmesine basın.');
   $('#secbar').classList.toggle('ac',!!h&&!ciz);
   if(!h)return;
   const ad=h.tip==='serbest'?'Serbest çizim':SEK[h.tip].ad;$('#secAd').textContent=`${ad} · Hat ${S.hatlar.indexOf(h)+1}`;$('#sbAd').textContent=`${ad} · ${h.rot}°`;
@@ -733,7 +733,7 @@ for(const[id,ax]of[['#dSol','x'],['#dUst','y']]){$(id).addEventListener('focus',
   $(id).addEventListener('input',e=>{const h=hs();if(!h)return;const v=parseFloat(e.target.value.replace(',','.'));if(isNaN(v))return;const k=kutu(dunya(h));if(ax==='x')h.cx+=v-k.x0;else h.cy+=v-k.y0;tumu();});}
 $('#secPan').addEventListener('click',e=>{const b=e.target.closest('[data-is]'),h=hs();if(!b||!h)return;kaydet();
   const is=b.dataset.is;
-  if(is==='yeni'){gecmis.pop();butonDurum();sec=null;tumu();gotur($('#sekil'));tost('Şimdi yeni hat için bir şekil seçin.');return;}
+  if(is==='yeni'){gecmis.pop();butonDurum();sec=null;yeniHatIste=true;tumu();gotur($('#sekil'));tost('Şimdi yeni hat için bir şekil seçin.');return;}
   if(is==='sil'){S.hatlar=S.hatlar.filter(x=>x!==h);sec=null;}
   if(is==='ortala'){const k=kutu(dunya(h));h.cx+=S.oda.w/2-(k.x0+k.x1)/2;h.cy+=S.oda.l/2-(k.y0+k.y1)/2;}
   if(is==='ayna')h.ayna=!h.ayna;
