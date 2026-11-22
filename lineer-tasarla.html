@@ -131,6 +131,9 @@ input[type=range]{width:100%;accent-color:var(--amber)}
 .kam button.on{color:#fff;border-color:var(--amber)}
 .dimk{position:absolute;left:12px;bottom:12px;z-index:2;display:none;align-items:center;gap:6px;background:rgba(10,10,10,.8);border:1px solid var(--line);border-radius:99px;padding:.2rem .7rem;font-size:.78rem;color:#fff}
 .sahne.uc .dimk{display:flex}@media (max-width:900px){.dimk{top:84px;bottom:auto;left:12px}}
+.capk{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:2px}.capk span{font-size:.75rem;color:var(--mute);width:100%}
+.capk button{border:1px solid var(--line);border-radius:99px;padding:.3rem .65rem;font-size:.78rem;background:transparent;color:inherit;cursor:pointer}
+.capk button.on{border-color:var(--amber);color:var(--amber)}
 .dimk input{width:110px;accent-color:var(--amber)}.dimk b{min-width:2.6em;font-weight:600;color:var(--amber)}
 .uc-ipucu{position:absolute;right:12px;bottom:12px;font-size:.72rem;color:var(--mute);background:rgba(10,10,10,.7);padding:.3rem .6rem;border-radius:8px}
 /* ozet */
@@ -493,7 +496,9 @@ const SEK={
   kare:{ad:'Kare',p:{a:['Kenar',1.8,.3,8]}},
   dikd:{ad:'Dikdörtgen',p:{a:['Uzun kenar',3,.3,12],b:['Kısa kenar',1.6,.3,12]}},
   ucgen:{ad:'Üçgen',p:{a:['Kenar',1.8,.3,8]}},
-  altigen:{ad:'Altıgen',p:{a:['Kenar',.9,.2,5]}},
+  yuvarlak:{ad:'Yuvarlak',p:{c:['Çap',120,30,400,1,'cm']}},
+  besgen:{ad:'Beşgen',p:{c:['Çap',120,30,400,1,'cm']}},
+  altigen:{ad:'Altıgen',p:{c:['Çap',120,30,400,1,'cm']}},
   cokgen:{ad:'Çokgen',p:{a:['Kenar',.7,.2,5],n:['Kenar sayısı',8,5,12,1]}},
   petek:{ad:'Petek',p:{a:['Kenar',.6,.2,3],n:['Hücre',3,1,7,1]}},
   izgara:{ad:'Izgara',p:{a:['Göz',1,.3,4],n:['Göz sayısı',2,1,5,1],b:['Sıra',2,1,5,1]}},
@@ -514,7 +519,9 @@ function uret(h){
     case 'kare':return poly([[-a/2,-a/2],[a/2,-a/2],[a/2,a/2],[-a/2,a/2]]);
     case 'dikd':return poly([[-a/2,-b/2],[a/2,-b/2],[a/2,b/2],[-a/2,b/2]]);
     case 'ucgen':{const p=ngen(3,a);const cy=(p[0][1]+p[1][1]+p[2][1])/3;return poly(p.map(q=>[q[0],q[1]-cy]));}
-    case 'altigen':return poly(ngen(6,a,0));
+    case 'yuvarlak':{const r=(h.c||120)/200;return poly(Array.from({length:48},(_,i)=>{const t=i*Math.PI/24;return[r*Math.cos(t),r*Math.sin(t)]}));}
+    case 'besgen':{const r=(h.c||120)/200;return poly(ngen(5,2*r*Math.sin(Math.PI/5)));}
+    case 'altigen':return poly(h.c?ngen(6,h.c/200,0):ngen(6,a,0));
     case 'cokgen':return poly(ngen(n,a,-Math.PI/2+(n%2?0:Math.PI/n)));
     case 'petek':{const ax=[[0,0],[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]].slice(0,n);let out=[];
       for(const[q,r]of ax){const cx=a*1.5*q,cy=a*Math.sqrt(3)*(r+q/2);out.push(...poly(ngen(6,a,0).map(p=>[p[0]+cx,p[1]+cy])));}
@@ -678,6 +685,7 @@ for(const[k,id,a,b]of[['w','#odaW',1.5,30],['l','#odaL',1.5,30],['h','#odaH',2.2
 function yeniHat(tip){const h={id:++S.sayac,tip,rot:0,ayna:false,cx:S.oda.w/2,cy:S.oda.l/2};
   for(const[k,v]of Object.entries(SEK[tip].p))h[k]=v[1];
   const m=Math.min(S.oda.w,S.oda.l);
+  if(h.c)h.c=Math.max(30,Math.min(h.c,Math.floor((m-1)*10)*10));
   // odaya sigdir
   const dik=S.oda.l>S.oda.w,uzn=Math.max(S.oda.w,S.oda.l),ksa=Math.min(S.oda.w,S.oda.l);
   if(['duz','paralel'].includes(tip)){if(dik)h.rot=90;h.a=yuv(Math.max(.6,Math.min(tip==='duz'?uzn-1:h.a,uzn-1)),.1);}
@@ -701,7 +709,7 @@ function secPanel(){const h=hs(),p=$('#secPan');p.classList.toggle('ac',!!h);
   const segs=dunya(h);$('#secUz').textContent=m2(yuv(segs.reduce((a,z)=>a+uz(z),0),.01))+' m';
   const prm=h.tip==='serbest'?{}:SEK[h.tip].p;
   if(document.activeElement?.closest('#secParam')==null)
-    $('#secParam').innerHTML=Object.entries(prm).map(([k,v])=>`<label class="fld"><span>${v[0]}</span><div class="u"><input class="inp" data-p="${k}" type="number" min="${v[2]}" max="${v[3]}" step="${v[4]||.05}" value="${+(+h[k]).toFixed(2)}" inputmode="decimal">${v[4]?'':'<em>m</em>'}</div></label>`).join('')||'<p class="ipucu" style="grid-column:1/-1;margin:0">Serbest çizimin şeklini değiştirmek için silip yeniden çizin. Taşıyabilir, döndürebilir ve kopyalayabilirsiniz.</p>';
+    $('#secParam').innerHTML=Object.entries(prm).map(([k,v])=>`<label class="fld"><span>${v[0]}</span><div class="u"><input class="inp" data-p="${k}" type="number" min="${v[2]}" max="${v[3]}" step="${v[4]||.05}" value="${+(+h[k]).toFixed(2)}" inputmode="decimal">${v[5]?`<em>${v[5]}</em>`:v[4]?'':'<em>m</em>'}</div></label>${k==='c'?`<div class="capk" style="grid-column:1/-1"><span>Hazır çaplar</span>${[60,80,100,120,150,180,200,250].map(c=>`<button type="button" data-cap="${c}" class="${+h.c===c?'on':''}">${c} cm</button>`).join('')}</div>`:''}`).join('')||'<p class="ipucu" style="grid-column:1/-1;margin:0">Serbest çizimin şeklini değiştirmek için silip yeniden çizin. Taşıyabilir, döndürebilir ve kopyalayabilirsiniz.</p>';
   $('#rot').value=h.rot;$('#rotO').textContent=h.rot+'°';
   const k=kutu(segs);for(const[id,v]of[['#dSol',k.x0],['#dUst',k.y0]])if(document.activeElement!==$(id))$(id).value=(+v.toFixed(2));
   $('#dDiger').textContent=`Sağ duvara ${m2(+(S.oda.w-k.x1).toFixed(2))} m, alt duvara ${m2(+(S.oda.l-k.y1).toFixed(2))} m.`;
@@ -709,6 +717,7 @@ function secPanel(){const h=hs(),p=$('#secPan');p.classList.toggle('ac',!!h);
 $('#secParam').addEventListener('focusin',()=>kaydet());
 $('#secParam').addEventListener('input',e=>{const i=e.target.closest('[data-p]'),h=hs();if(!i||!h)return;const v=parseFloat(i.value.replace(',','.'));const d=SEK[h.tip].p[i.dataset.p];if(!(v>=d[2]&&v<=d[3]))return;h[i.dataset.p]=d[4]?Math.round(v):v;sigdir(h);tumu();});
 $('#secParam').addEventListener('focusout',()=>secPanel());
+$('#secParam').addEventListener('click',e=>{const b=e.target.closest('[data-cap]'),h=hs();if(!b||!h)return;kaydet();h.c=+b.dataset.cap;sigdir(h);b.blur();tumu();secPanel();});
 $('#rot').addEventListener('pointerdown',()=>kaydet());
 $('#rot').addEventListener('input',e=>{const h=hs();if(!h)return;h.rot=+e.target.value;sigdir(h);tumu();});
 function sigdir(h){const k=kutu(dunya(h));if(k.x1-k.x0<=S.oda.w){if(k.x0<0)h.cx-=k.x0;if(k.x1>S.oda.w)h.cx-=k.x1-S.oda.w;}else h.cx+=S.oda.w/2-(k.x0+k.x1)/2;
@@ -848,8 +857,10 @@ function cizBitir(iptal){if(!ciz)return;const p=ciz.pts,kapali=ciz.kapali;ciz=nu
   tumu();}
 
 /* ---------- malzeme listesi ---------- */
-function malzeme(){const segs=tumSeg(),P=prof();const r={profil:0,kapak:0,led:0,parca:[],ek:0,klips:0,birlesim:{},uc:0,surucu:{},besleme:0,hatW:[]};
+function malzeme(){const yuvId=new Set(S.hatlar.filter(h=>h.tip==='yuvarlak').map(h=>h.id)),segs=tumSeg().filter(z=>!yuvId.has(z.h)),P=prof();const r={profil:0,kapak:0,led:0,parca:[],ek:0,klips:0,birlesim:{},uc:0,surucu:{},besleme:0,hatW:[]};
   for(const z of segs){const L=uz(z);r.profil+=L;const k=Math.ceil(L/BOY-1e-6);r.ek+=k-1;for(let i=0;i<k;i++)r.parca.push(Math.min(BOY,L-i*BOY));r.klips+=Math.max(2,Math.ceil(L/.8)+1);}
+  for(const h of S.hatlar.filter(h=>h.tip==='yuvarlak')){const L=Math.PI*h.c/100,k=Math.ceil(L/BOY-1e-6);r.profil+=L;r.ek+=k;for(let i=0;i<k;i++)r.parca.push(L/k);r.klips+=Math.max(3,Math.ceil(L/.8));
+    r.birlesim[`Yuvarlak bükme profil Ø${h.c} cm`]=(r.birlesim[`Yuvarlak bükme profil Ø${h.c} cm`]||0)+1;}
   r.kapak=r.profil;r.led=r.profil;
   // dugumler
   const dug=[];const bul=(x,y)=>{for(const d of dug)if(Math.hypot(d.x-x,d.y-y)<.02)return d;const d={x,y,yon:[]};dug.push(d);return d;};
@@ -1000,7 +1011,7 @@ async function uc3(){
 /* 3D hareket: isiklar yavasca yanar, kamera kendiliginden gezer, dokununca durur, 7 sn sonra devam eder */
 function hareket(t,dt){const {ren,ctl,cam}=U;
   if(ren.toneMappingExposure<1)ren.toneMappingExposure=Math.min(1,ren.toneMappingExposure+(1.02-ren.toneMappingExposure)*dt*2.2);
-  U.bloom.strength=(isikAcik?.8*(U.bloom.taban??1):0)*ren.toneMappingExposure;
+  U.bloom.strength=(isikAcik?.4*(U.bloom.taban??1):0)*ren.toneMappingExposure;
   if(U.tv&&t-U.tvSon>60){U.tvSon=t;tvCiz(t/1000);U.tv.needsUpdate=true;}
   const bekle=performance.now()-U.dokun<7000,gez=U.gez&&!bekle;
   ctl.autoRotate=gez&&U.kam!=='oda';ctl.autoRotateSpeed=U.kam==='ust'?.45:.6;
@@ -1146,7 +1157,7 @@ function sahneKur(){const key=JSON.stringify([S.oda,S.hatlar,S.profil,S.kapak,S.
   tv.rotation.x=Math.PI/2;tv.position.set(w/2,h,l/2);grp.add(tv);
   // lineerler
   const P=prof(),pw=P.w/1000,ph=P.h/1000,rk=new THREE.Color(RENK.find(r=>r[0]===S.renk)[2]),tn=ton();
-  const gov=new THREE.MeshLambertMaterial({color:rk}),isk=new THREE.MeshBasicMaterial({color:isikAcik?new THREE.Color(tn[0]*(.9+2.3*DIM),tn[1]*(.9+2.3*DIM),tn[2]*(.9+2.3*DIM)):new THREE.Color(.85,.85,.82)});
+  const gov=new THREE.MeshBasicMaterial({color:rk.clone().multiplyScalar(isikAcik?.14+.5*pozla(EIND*2*DIM):.3)}),isk=new THREE.MeshBasicMaterial({color:isikAcik?new THREE.Color(tn[0]*(.9+1.2*DIM),tn[1]*(.9+1.2*DIM),tn[2]*(.9+1.2*DIM)):new THREE.Color(.85,.85,.82)});
   const dug=[];
   for(const z of tumSeg()){const L=uz(z),a=Math.atan2(z[3]-z[1],z[2]-z[0]),mx=(z[0]+z[2])/2,my=(z[1]+z[3])/2;
     const b=new THREE.Mesh(new THREE.BoxGeometry(L+pw,ph,pw),gov);b.position.set(mx,h-ph/2,my);b.rotation.y=-a;grp.add(b);
