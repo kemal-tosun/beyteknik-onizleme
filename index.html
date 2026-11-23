@@ -789,7 +789,7 @@ html.zn .track{grid-template-columns:repeat(5,1fr);gap:16px}
 
 <style id="zenith">
 html.zn body{background:#fff;color:#111;font-family:'Inter','Outfit',sans-serif}
-html.zn #pre,html.zn #glow,html.zn #dot,html.zn #vitrin,html.zn #hero,html.zn .tema-btn{display:none!important}
+html.zn #pre,html.zn #glow,html.zn #dot,html.zn #vitrin,html.zn #hero{display:none!important}
 html.zn h1,html.zn h2,html.zn h3{font-weight:400;letter-spacing:-.035em}
 html.zn h2 .serif,html.zn h1 .serif{font-family:inherit;font-style:normal;color:#111}
 html.zn .warm{color:#111!important;background:none!important;-webkit-text-fill-color:#111!important}
@@ -882,6 +882,37 @@ html.zn .pc .halo,html.zn .pc .num{display:none}
 .kc.oz-lin b em{font-family:'Instrument Serif',serif;font-weight:400;color:#FFB23F}
 .kc.oz-lin small{font-size:13px;line-height:1.45;opacity:.75}
 .kc.oz-lin .oz-a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#FFB23F;font-weight:700}
+/* === ZENITH GECE MODU (2026-11-23): koyu zeminde yazi beyaz, acik zeminde siyah === */
+html.zn:not(.gunduz){--warm:#fff;--txt:#f2f2f2}
+html.zn:not(.gunduz) body{background:#141414;color:#f2f2f2}
+html.zn:not(.gunduz) h1,html.zn:not(.gunduz) h2,html.zn:not(.gunduz) h3{color:#fff}
+html.zn:not(.gunduz) h2 .serif,html.zn:not(.gunduz) h1 .serif{color:#fff}
+html.zn:not(.gunduz) .warm{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html.zn:not(.gunduz) nav#nav,html.zn:not(.gunduz) nav#nav.on{background:rgba(20,20,20,.9)!important;border-bottom-color:#2a2a2a}
+html.zn:not(.gunduz) nav#nav ul,html.zn:not(.gunduz) nav#nav .logo{color:#fff!important}
+html.zn:not(.gunduz) nav#nav ul a:hover{color:#ffb547}
+html.zn:not(.gunduz) .tema-btn{color:#fff;border-color:#3a3a3a}
+html.zn:not(.gunduz) .btn.pri{background:#fff!important;color:#111!important}
+html.zn:not(.gunduz) .zbtn{background:#fff;color:#111}
+html.zn:not(.gunduz) .zbtn:hover{background:#e8e8e8}
+html.zn:not(.gunduz) .zbtn.ac{background:#222;color:#fff;border-color:#3a3a3a}
+html.zn:not(.gunduz) #zh{background:#141414}
+html.zn:not(.gunduz) .zh-b,html.zn:not(.gunduz) .zs h2,html.zn:not(.gunduz) .zo-y h2{color:#fff}
+html.zn:not(.gunduz) .zh-sag p,html.zn:not(.gunduz) .zs p,html.zn:not(.gunduz) .zo-y p{color:#a8adb5}
+html.zn:not(.gunduz) #zk,html.zn:not(.gunduz) #zo{background:#1b1b1b}
+html.zn:not(.gunduz) .zc{background:#242424;color:#fff}
+html.zn:not(.gunduz) .zf{background:#2e2e2e}
+html.zn:not(.gunduz) .zc small{color:#a8adb5}
+html.zn:not(.gunduz) .zc ul{color:#c9cdd3;border-top-color:#333}
+html.zn:not(.gunduz) .zo-y{background:#242424}
+html.zn:not(.gunduz) .kt-tabs button.on{background:#fff!important;color:#111!important}
+html.zn:not(.gunduz) .kt-baslik{background:#141414!important}
+html.zn:not(.gunduz) .pc .gor{color:#fff!important}
+html.zn:not(.gunduz) .pc .use,html.zn:not(.gunduz) .gor .ar{color:#a8adb5!important}
+html.zn:not(.gunduz) .kick{color:#a8adb5}
+html.zn:not(.gunduz) .kick:before{background:#fff!important}
+html.zn:not(.gunduz) #urunler,html.zn:not(.gunduz) #lab,html.zn:not(.gunduz) #referanslar,html.zn:not(.gunduz) #teklif{background:#141414}
+html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) #projeler{background:#1b1b1b}
 </style>
 </head>
 <body>
@@ -1743,7 +1774,7 @@ addEventListener('load',()=>ScrollTrigger.refresh());
 <script>(function(){var b=document.getElementById('waBtn');if(CONFIG.whatsapp){b.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent('Merhaba, BeyTeknik ürünleri hakkında bilgi almak istiyorum.')}else b.style.display='none'})();</script>
 <script>(function(){var b=document.getElementById('temaBtn'),r=document.documentElement,m=document.querySelector('meta[name=theme-color]');
 function s(){var g=r.classList.contains('gunduz');if(m)m.content=g?'#ffffff':'#141414';b.setAttribute('aria-pressed',g)}s();
-b.addEventListener('click',function(){r.classList.toggle('gunduz');try{localStorage.setItem('tema',r.classList.contains('gunduz')?'gunduz':'gece')}catch(e){}s()})})();</script>
+b.addEventListener('click',function(){r.classList.toggle('gunduz');var zf=document.getElementById('zhFoto'),zt=document.getElementById('zhTus');if(zf&&zt&&(zf.classList.contains('yan')===r.classList.contains('gunduz')))zt.click();try{localStorage.setItem('tema',r.classList.contains('gunduz')?'gunduz':'gece')}catch(e){}s()})})();</script>
 
 <script>
 (function(){const f=document.getElementById('zhFoto'),t=document.getElementById('zhTus');if(!f)return;
