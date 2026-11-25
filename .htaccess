@@ -1,13 +1,16 @@
 # BeyTeknik - araclar/seo_sayfalar.py uretir. Elle degistirme, scripti duzenle.
 Options -Indexes
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
 AddDefaultCharset UTF-8
 RewriteEngine On
 
-# HTTPS ve www'suz tek adres. SSL sertifikasi acik olunca bu iki satirin basindaki # isaretini kaldir.
-# RewriteCond %{HTTPS} off [OR]
-# RewriteCond %{HTTP_HOST} ^www\. [NC]
-# RewriteRule ^ https://beyteknik.com%{REQUEST_URI} [L,R=301]
+# HTTPS ve www'suz tek adres (SSL acik)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://beyteknik.com%{REQUEST_URI} [L,R=301]
+
+# firmanin erp klasorleri: asagidaki kurallar bunlara dokunmaz
+RewriteRule ^erp2?(/|$) - [L]
 
 # yedek ve calisma dosyalari disariya kapali
 RewriteRule (^|/)[^/]*_(yedek|oncesi)[^/]*$ - [R=404,L]
