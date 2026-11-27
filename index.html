@@ -833,6 +833,23 @@ html.zn .btn.pri:before,html.zn .btn.pri:after{display:none}
 .zh-ust .zbtn{display:none}
 .zh-foto{height:calc(100vh - 160px);height:calc(100svh - 160px);min-height:340px;max-height:56.2vw}
 .zh-foto img{object-position:50% 60%}
+.zh-aks{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.zh-aks a{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:transform .3s,background .3s}
+.zh-aks a:hover{transform:translateY(-2px)}
+.zh-tk{background:#111;color:#fff}
+.zh-wa{background:#25d366;color:#fff}
+.zh-wa:hover{background:#1ebe5a}
+.zh-gv{grid-column:1/-1;margin:0;font-size:14px;color:#6b7079;line-height:1.5}
+.zh-gv b{color:#111;font-weight:600}
+.zh-gv span{color:#111;white-space:nowrap}
+#zh .zh-foto{height:calc(100vh - 200px);height:calc(100svh - 200px)}
+.wa-gnc{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff!important;padding:14px 22px;border-radius:8px;font-weight:600;text-decoration:none;margin-top:1.2rem;transition:background .3s}
+.wa-gnc:hover{background:#1ebe5a}
+.btn.wa-b{background:#25d366!important;color:#fff!important;border-color:#25d366!important;margin-left:.5rem}
+.btn.wa-b:hover{background:#1ebe5a!important}
+.wa-alt{display:block;margin-top:.9rem;font-size:.9rem;opacity:.85}
+.wa-alt a{color:inherit;text-decoration:underline}
+@media (max-width:820px){.zh-aks{justify-content:flex-start}.zh-aks a{padding:10px 16px;font-size:13px}.zh-gv{font-size:13px}#zh .zh-foto{height:auto}}
 @media (max-width:820px){.zh-b{white-space:normal}.zh-ust{grid-template-columns:1fr}.zh-ust .zbtn{grid-column:1;grid-row:auto;justify-self:start}.zh-foto{height:auto;aspect-ratio:2064/1152;max-height:none;min-height:0}.zh-urun{display:none}.zh-tus{padding:6px 12px 6px 8px;font-size:12px;bottom:8px;right:8px}.zh-tus i{width:16px;height:16px}}
 #zk{background:#f7f7f7;padding:110px 0}
 .zs{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start;margin-bottom:50px}
@@ -951,9 +968,11 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <!-- ZENITH HERO -->
 <section id="zh" aria-label="BeyTeknik">
   <div class="zh-ust wrap">
-    <h1 class="zh-b">Işığın evinize yakıştığı yer.</h1>
-    <div class="zh-sag"><p>Bahçe yolundan giriş kapısına kadar, evinizin dış mekanını bollard, ışık küresi ve modern direklerle tasarlıyor, Bursa'daki fabrikamızda üretiyoruz.</p></div>
+    <h1 class="zh-b">Parktan bahçeye, doğru ışık.</h1>
+    <div class="zh-sag"><p>Belediyeler, peyzaj firmaları ve konut projeleri için LED direk ve bollardları Bursa'daki fabrikamızda tasarlıyor, üretiyoruz.</p></div>
     <a href="#teklif" class="zbtn">Teklif isteyin</a>
+    <div class="zh-aks"><a href="#teklif" class="zh-tk">Proje teklifi isteyin</a><a class="zh-wa wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20projemiz%20i%C3%A7in%20teklif%20almak%20istiyoruz." target="_blank" rel="noopener">WhatsApp'tan yazın</a></div>
+    <p class="zh-gv"><b>Millet bahçelerinden havalimanlarına.</b> DHMİ, TOKİ, Karayolları ve 18'den fazla belediye bizi seçti. <span>Teklife 1 iş gününde dönüş.</span></p>
   </div>
   <div class="zh-foto" id="zhFoto">
     <img class="gun" src="img/zenith/villa_gunduz.webp" alt="Modern villa, gündüz">
@@ -1050,7 +1069,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
       <article class="pc last"><div>
         <h3>Aklınızdaki direk<br><span class="serif">listede yok mu?</span></h3>
         <p>Çizin ya da anlatın. Ölçüsünü, rengini, ışığını projenize göre birlikte belirleyelim. Aplik, setüstü, iç ve dış mekan armatürleri de üretiyoruz.</p>
-        <a href="#teklif" class="btn">Özel tasarım isteyin <span class="ar">→</span></a></div>
+        <a href="#teklif" class="btn">Özel tasarım isteyin <span class="ar">→</span></a> <a class="btn wa-b wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20%C3%B6zel%20tasar%C4%B1m%20bir%20%C3%BCr%C3%BCn%20i%C3%A7in%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan yazın</a></div>
       </article>
     </div>
     <div class="hs-bar"><i id="hsbar"></i></div>
@@ -1063,7 +1082,8 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
     <div class="kt-top">
       <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde.</span></h2>
         <p class="sub">Beş ürün ailesi, sade ve kolay gezilir. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
-        <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (27 MB) <span class="ar">↓</span></a></div>
+        <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (27 MB) <span class="ar">↓</span></a>
+        <small class="wa-alt"><a href="indir/BeyTeknik_Katalog_2027_hafif.pdf" download>Telefon için hafif sürüm (12 MB)</a></small></div>
       <label class="kt-ara"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="ktAra" type="search" placeholder="Model kodu ya da ad ara" aria-label="Katalogda ara"></label>
     </div>
     <div class="kt-tabs" id="ktTabs" role="tablist"></div>
@@ -1083,7 +1103,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
       </div>
     </div>
     <div class="kt-grid" id="ktGrid"></div>
-    <div class="kt-alt"><a href="#teklif" class="btn pri">Projeniz için teklif isteyin <span class="ar">→</span></a></div>
+    <div class="kt-alt"><a href="#teklif" class="btn pri">Projeniz için teklif isteyin <span class="ar">→</span></a> <a class="btn wa-b wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20katalogdaki%20%C3%BCr%C3%BCnler%20i%C3%A7in%20fiyat%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan yazın</a></div>
   </div>
 </section>
 
@@ -1189,7 +1209,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
   <div class="wrap">
     <div class="pj-top">
       <div><div class="kick">Projelerimiz</div><h2 class="sec-h">Sahada,<br><span class="serif warm">gece yanarken.</span></h2>
-        <p class="sub">Belediye parklarından havalimanına, saraydan konut sitelerine. Bir projeye dokunun, fotoğraflarını ve kullanılan ürünleri görün.</p></div>
+        <p class="sub">Millet bahçelerinden havalimanına, saraydan konut sitelerine. Bir projeye dokunun, fotoğraflarını ve kullanılan ürünleri görün.</p></div>
       <div class="pj-f" id="pjF" role="tablist">
         <button class="on" data-f="hepsi">Tümü</button><button data-f="park">Belediye ve park</button><button data-f="kamu">Kamu ve ticari</button><button data-f="konut">Konut</button>
       </div>
@@ -1213,8 +1233,10 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
     <div class="ct">
       <div class="l">
         <h2>Projenizi<br><span class="serif">konuşalım.</span></h2>
-        <p>Ürün seçimi, ışık hesabı, özel ölçü ve renk için bize yazın. Teklifinizi hızla hazırlayalım.</p>
-        <ul><li>Projeye özel ürün önerisi</li><li>Özel ölçü, renk ve arma</li><li>Kamu ve özel sektör tecrübesi</li><li>ISO 9001 ve CE belgeli üretim</li></ul>
+        <p>Ürün seçimi, ışık hesabı, özel ölçü ve renk için bize yazın. Teklifinizi 1 iş günü içinde hazırlayalım.</p>
+        <ul><li>Projeye özel ürün önerisi</li><li>Özel ölçü, renk ve arma</li><li>Millet bahçesi, belediye ve özel sektör tecrübesi</li><li>ISO 9001 ve CE belgeli üretim</li></ul>
+        <a class="wa-gnc wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20projemiz%20i%C3%A7in%20teklif%20almak%20istiyoruz.%20%C3%87izim%20%2F%20foto%C4%9Fraf%20g%C3%B6nderece%C4%9Fim." target="_blank" rel="noopener">Projenizi WhatsApp'tan gönderin</a>
+        <small class="wa-alt">Çizim, fotoğraf ya da ihale listesini doğrudan gönderebilirsiniz.</small>
         <p style="margin-top:1.4rem"><a href="tel:+902242154544">+90 224 215 45 44</a><br><a href="mailto:info@beyteknik.com">info@beyteknik.com</a></p>
       </div>
       <form id="form" novalidate><input type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
@@ -1226,10 +1248,11 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
           <div><label for="ft">Telefon</label><input id="ft" name="tel" type="tel" required autocomplete="tel"></div>
           <div><label for="fe">E-posta</label><input id="fe" name="eposta" type="email" autocomplete="email"></div>
         </div>
-        <div><label>Proje alanı</label><div class="pick" id="pick"><button type="button">Park</button><button type="button">Cadde / bulvar</button><button type="button">Meydan</button><button type="button">Site</button><button type="button">Otel / AVM</button><button type="button">Özel tasarım</button></div></div>
+        <div><label>Proje alanı</label><div class="pick" id="pick"><button type="button">Belediye / kamu</button><button type="button">Peyzaj firması</button><button type="button">Ev / bahçe</button><button type="button">Park</button><button type="button">Cadde / bulvar</button><button type="button">Meydan</button><button type="button">Site</button><button type="button">Otel / AVM</button><button type="button">Özel tasarım</button></div></div>
         <div><label for="fm">Kısaca projeniz</label><textarea id="fm" name="mesaj" placeholder="Alan, adet, takvim..."></textarea></div>
         <button class="btn pri" type="submit">Teklif isteyin <span class="ar">→</span></button>
-        <div class="ok"><div class="bulb2"></div><h4>Işığınız yandı.</h4><p>Talebiniz bize ulaştı. En kısa sürede dönüş yapacağız.</p></div>
+        <small class="wa-alt">1 iş günü içinde dönüş yapıyoruz. Acele mi? <a class="wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20teklif%20almak%20istiyorum." target="_blank" rel="noopener">WhatsApp'tan yazın</a></small>
+        <div class="ok"><div class="bulb2"></div><h4>Işığınız yandı.</h4><p>Talebiniz bize ulaştı. 1 iş günü içinde dönüş yapacağız.</p></div>
       </form>
     </div>
   </div>
