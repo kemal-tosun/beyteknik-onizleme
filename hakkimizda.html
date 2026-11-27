@@ -719,6 +719,9 @@ html.gunduz .pc .num{-webkit-text-stroke:1px rgba(0,0,0,.08)}
 .hs-bar{display:none}
 @media (max-width:1100px){.track{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.track{grid-template-columns:1fr}.pc .vis{height:52vh;max-height:420px}.pc .vis img{max-height:calc(min(52vh,420px) - 2.4rem)}}
+.dil-btn{font-size:12px;font-weight:700;letter-spacing:.06em;text-decoration:none;margin-right:6px}
+@media (max-width:600px){.nav-sag{gap:.3rem}.nav-sag .tema-btn{width:36px;height:36px}.dil-btn{margin-right:0;font-size:11px}}
+@media (max-width:420px){.nav-sag>.btn .ar{display:none}.nav-sag>.btn{padding-left:.9rem;padding-right:.9rem}}
 </style>
 <style>
 /* === HAKKIMIZDA sayfasi === */
@@ -784,7 +787,7 @@ html.gunduz nav ul a.aktif{color:#c47a12}
     <li><a href="index.html#referanslar">Referanslar</a></li>
     <li><a href="index.html#projeler">Projeler</a></li>
   </ul>
-  <div class="nav-sag"><button class="tema-btn" id="temaBtn" aria-label="Gece / gündüz modu"><svg class="ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+  <div class="nav-sag"><a class="tema-btn dil-btn" href="hakkimizda_en.html" hreflang="en" lang="en" aria-label="English">EN</a><button class="tema-btn" id="temaBtn" aria-label="Gece / gündüz modu"><svg class="ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
   <a href="index.html#teklif" class="btn pri">Teklif isteyin <span class="ar">→</span></a>
   <button class="menu-btn" id="menuBtn" aria-label="Menüyü aç" aria-expanded="false"><span></span><span></span></button></div>
 </nav>
