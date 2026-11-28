@@ -939,6 +939,17 @@ html.zn:not(.gunduz) .kick:before{background:#fff!important}
 html.zn:not(.gunduz) #urunler,html.zn:not(.gunduz) #lab,html.zn:not(.gunduz) #referanslar,html.zn:not(.gunduz) #teklif{background:#141414}
 html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) #projeler{background:#1b1b1b}
 </style>
+<style id="unslop">
+/* unslop deneme: buyuk harf + genis aralikli etiketler cumle duzenine */
+.kick,.pc .use,.kt-baslik .n,.zh-kw,.km h4,.fcols h5,form label,.pj .ic small,.spec th,.hint,.stage .tag,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn,.kc .kyok small,.km th{text-transform:none!important;letter-spacing:.01em!important}
+.kick,.pc .use,.kt-baslik .n,.km h4,.fcols h5,.pj .ic small,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn{font-weight:500!important}
+.kick{font-size:.875rem!important}.pc .use{font-size:.8125rem!important}.zh-kw{font-size:15px!important}
+/* parlayan ve dolasan yazi efekti kapali */
+.shiny{animation:none!important;background:none!important;color:var(--amber)!important}
+/* her seye hareket yerine yalniz renk ve kenar */
+.rq span,.pick button,.pj-f button{transition:color .2s,background-color .2s,border-color .2s!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 
@@ -974,7 +985,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <!-- ZENITH HERO -->
 <section id="zh" aria-label="BeyTeknik">
   <div class="zh-ust wrap">
-    <h1 class="zh-b">Parktan bahçeye, doğru ışık.<span class="zh-kw">LED aydınlatma direği ve bollard üreticisi · Bursa</span></h1>
+    <h1 class="zh-b">Parktan bahçeye, doğru ışık<span class="zh-kw">LED aydınlatma direği ve bollard üreticisi · Bursa</span></h1>
     <div class="zh-sag"><p>Belediyeler, peyzaj firmaları ve konut projeleri için LED direk ve bollardları Bursa'daki fabrikamızda tasarlıyor, üretiyoruz.</p></div>
     <a href="#teklif" class="zbtn">Teklif isteyin</a>
     <div class="zh-aks"><a class="zh-wa wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20projemiz%20i%C3%A7in%20teklif%20almak%20istiyoruz." target="_blank" rel="noopener">WhatsApp'tan yazın</a></div>
@@ -1041,7 +1052,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="urunler">
   <div class="ph wrap">
     <div class="ph-top">
-      <div><div class="kick">Ürün aileleri</div><h2>Her alana<br><span class="serif warm">doğru ışık.</span></h2></div>
+      <div><div class="kick">Ürün aileleri</div><h2>Her alana<br><span class="serif warm">doğru ışık</span></h2></div>
       <p class="sub">Beş ana seri. Her biri projenize özel ölçü, renk ve ışık dağılımıyla üretilebilir.</p>
     </div>
   </div>
@@ -1086,7 +1097,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="katalog">
   <div class="wrap">
     <div class="kt-top">
-      <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde.</span></h2>
+      <div><div class="kick">Ürün kataloğu 2027</div><h2 class="sec-h">Tüm modeller,<br><span class="serif warm">tek yerde</span></h2>
         <p class="sub">Beş ürün ailesi, sade ve kolay gezilir. Bir modele dokunun, ölçüsünü, ışığını ve teknik çizimini görün.</p>
         <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Kataloğu PDF indirin (27 MB) <span class="ar">↓</span></a>
         <small class="wa-alt"><a href="indir/BeyTeknik_Katalog_2027_hafif.pdf" download>Telefon için hafif sürüm (12 MB)</a></small></div>
@@ -1133,7 +1144,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="lab">
   <div class="wrap">
     <div class="kick">Işık laboratuvarı</div>
-    <h2 class="sec-h">Işığı siz <span class="serif warm">ayarlayın.</span></h2>
+    <h2 class="sec-h">Işığı siz <span class="serif warm">ayarlayın</span></h2>
     <div class="lab">
       <div class="stage" id="stage">
         <div class="wash"></div><div class="rgb"></div><div class="cone"></div><div class="pool"></div>
@@ -1162,7 +1173,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="uretim">
   <div class="wrap">
     <div class="fac-top">
-      <div><div class="kick">Üretim</div><h2 class="sec-h">Her parça<br><span class="serif warm">aynı çatı altında.</span></h2></div>
+      <div><div class="kick">Üretim</div><h2 class="sec-h">Her parça<br><span class="serif warm">aynı çatı altında</span></h2></div>
       <p>Bursa Nilüfer'deki tesisimizde beş atölye yan yana çalışır. Tasarımdan sevkiyata kadar her adım bizim elimizden geçer, üretimimiz %100 yerlidir. Bu yüzden özel ölçü ve renk bizim için zor değil, sıradan bir iş.</p>
     </div>
     <div class="stats">
@@ -1186,7 +1197,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
     <div class="motto rv">Design it. Develop it. <b class="warm">Produce it.</b></div>
     <div class="blg" id="belgeler" hidden><!-- belgelerin guncel halleri gelince hidden kaldirilacak -->
       <div class="blg-top">
-        <div><div class="kick">Belgelerimiz</div><h3>Üretimimiz <span class="serif warm">belgeli.</span></h3></div>
+        <div><div class="kick">Belgelerimiz</div><h3>Üretimimiz <span class="serif warm">belgeli</span></h3></div>
         <p>Kalite, çevre ve iş güvenliği sistemlerimiz uluslararası belgelidir. Belgeye dokunun, büyük halini görün.</p>
       </div>
       <div class="blg-grid" id="blgGrid"></div>
@@ -1198,7 +1209,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="referanslar">
   <div class="wrap">
     <div class="kick">Referanslar</div>
-    <h2 class="sec-h">Işığımız Türkiye'nin<br><span class="serif warm">dört bir yanında.</span></h2>
+    <h2 class="sec-h">Işığımız Türkiye'nin<br><span class="serif warm">dört bir yanında</span></h2>
     <div class="big3">
       <div><div class="n" data-n="18" data-s="+">0</div><div class="l">Belediye</div></div>
       <div><div class="n" data-n="13" data-s="+">0</div><div class="l">İnşaat firması</div></div>
@@ -1214,7 +1225,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="projeler">
   <div class="wrap">
     <div class="pj-top">
-      <div><div class="kick">Projelerimiz</div><h2 class="sec-h">Sahada,<br><span class="serif warm">gece yanarken.</span></h2>
+      <div><div class="kick">Projelerimiz</div><h2 class="sec-h">Sahada,<br><span class="serif warm">gece yanarken</span></h2>
         <p class="sub">Millet bahçelerinden havalimanına, saraydan konut sitelerine. Bir projeye dokunun, fotoğraflarını ve kullanılan ürünleri görün.</p></div>
       <div class="pj-f" id="pjF" role="tablist">
         <button class="on" data-f="hepsi">Tümü</button><button data-f="park">Belediye ve park</button><button data-f="kamu">Kamu ve ticari</button><button data-f="konut">Konut</button>
@@ -1238,7 +1249,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
   <div class="wrap">
     <div class="ct">
       <div class="l">
-        <h2>Projenizi<br><span class="serif">konuşalım.</span></h2>
+        <h2>Projenizi<br><span class="serif">konuşalım</span></h2>
         <p>Ürün seçimi, ışık hesabı, özel ölçü ve renk için bize yazın. Teklifinizi 1 iş günü içinde hazırlayalım.</p>
         <ul><li>Projeye özel ürün önerisi</li><li>Özel ölçü, renk ve arma</li><li>Millet bahçesi, belediye ve özel sektör tecrübesi</li><li>ISO 9001 ve CE belgeli üretim</li></ul>
         <a class="wa-gnc wa-lnk" href="https://wa.me/905317447784?text=Merhaba%2C%20projemiz%20i%C3%A7in%20teklif%20almak%20istiyoruz.%20%C3%87izim%20%2F%20foto%C4%9Fraf%20g%C3%B6nderece%C4%9Fim." target="_blank" rel="noopener">Projenizi WhatsApp'tan gönderin</a>

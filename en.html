@@ -939,6 +939,17 @@ html.zn:not(.gunduz) .kick:before{background:#fff!important}
 html.zn:not(.gunduz) #urunler,html.zn:not(.gunduz) #lab,html.zn:not(.gunduz) #referanslar,html.zn:not(.gunduz) #teklif{background:#141414}
 html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) #projeler{background:#1b1b1b}
 </style>
+<style id="unslop">
+/* unslop deneme: buyuk harf + genis aralikli etiketler cumle duzenine */
+.kick,.pc .use,.kt-baslik .n,.zh-kw,.km h4,.fcols h5,form label,.pj .ic small,.spec th,.hint,.stage .tag,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn,.kc .kyok small,.km th{text-transform:none!important;letter-spacing:.01em!important}
+.kick,.pc .use,.kt-baslik .n,.km h4,.fcols h5,.pj .ic small,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn{font-weight:500!important}
+.kick{font-size:.875rem!important}.pc .use{font-size:.8125rem!important}.zh-kw{font-size:15px!important}
+/* parlayan ve dolasan yazi efekti kapali */
+.shiny{animation:none!important;background:none!important;color:var(--amber)!important}
+/* her seye hareket yerine yalniz renk ve kenar */
+.rq span,.pick button,.pj-f button{transition:color .2s,background-color .2s,border-color .2s!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 
@@ -974,7 +985,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <!-- ZENITH HERO -->
 <section id="zh" aria-label="BeyTeknik">
   <div class="zh-ust wrap">
-    <h1 class="zh-b">From park to garden, the right light.<span class="zh-kw">LED lighting pole and bollard manufacturer · Bursa, Türkiye</span></h1>
+    <h1 class="zh-b">From park to garden, the right light<span class="zh-kw">LED lighting pole and bollard manufacturer · Bursa, Türkiye</span></h1>
     <div class="zh-sag"><p>We design and manufacture LED poles and bollards for municipalities, landscaping firms, and residential projects at our factory in Bursa.</p></div>
     <a href="#teklif" class="zbtn">Request a quote</a>
     <div class="zh-aks"><a class="zh-wa wa-lnk" href="https://wa.me/905317447784?text=Hello%2C%20we%20would%20like%20a%20quote%20for%20our%20project." target="_blank" rel="noopener">Message via WhatsApp</a></div>
@@ -1041,7 +1052,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="urunler">
   <div class="ph wrap">
     <div class="ph-top">
-      <div><div class="kick">Product families</div><h2>The right light<br><span class="serif warm">for every space.</span></h2></div>
+      <div><div class="kick">Product families</div><h2>The right light<br><span class="serif warm">for every space</span></h2></div>
       <p class="sub">Five main series. Each can be custom-made with dimensions, colours and light distribution tailored to your project.</p>
     </div>
   </div>
@@ -1086,7 +1097,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="katalog">
   <div class="wrap">
     <div class="kt-top">
-      <div><div class="kick">Product catalogue 2027</div><h2 class="sec-h">Every model,<br><span class="serif warm">in one place.</span></h2>
+      <div><div class="kick">Product catalogue 2027</div><h2 class="sec-h">Every model,<br><span class="serif warm">in one place</span></h2>
         <p class="sub">Five product families, simple and easy to navigate. Tap a model to view its dimensions, lighting and technical drawing.</p>
         <a href="indir/BeyTeknik_Katalog_2027.pdf" download class="btn pri kt-pdf">Download PDF catalogue (27 MB) <span class="ar">↓</span></a>
         <small class="wa-alt"><a href="indir/BeyTeknik_Katalog_2027_hafif.pdf" download>Mobile light version (12 MB)</a></small></div>
@@ -1133,7 +1144,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="lab">
   <div class="wrap">
     <div class="kick">Photometric laboratory</div>
-    <h2 class="sec-h">Set the light <span class="serif warm">yourself.</span></h2>
+    <h2 class="sec-h">Set the light <span class="serif warm">yourself</span></h2>
     <div class="lab">
       <div class="stage" id="stage">
         <div class="wash"></div><div class="rgb"></div><div class="cone"></div><div class="pool"></div>
@@ -1162,7 +1173,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="uretim">
   <div class="wrap">
     <div class="fac-top">
-      <div><div class="kick">Manufacturing</div><h2 class="sec-h">Every part<br><span class="serif warm">under one roof.</span></h2></div>
+      <div><div class="kick">Manufacturing</div><h2 class="sec-h">Every part<br><span class="serif warm">under one roof</span></h2></div>
       <p>At our facility in Nilüfer, Bursa, five workshops operate side by side. Every step from design to dispatch is handled by us, and our production is 100% domestic. Therefore, custom dimensions and colours are routine for us, not a challenge.</p>
     </div>
     <div class="stats">
@@ -1186,7 +1197,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
     <div class="motto rv">Design it. Develop it. <b class="warm">Produce it.</b></div>
     <div class="blg" id="belgeler" hidden><!-- belgelerin guncel halleri gelince hidden kaldirilacak -->
       <div class="blg-top">
-        <div><div class="kick">Our Certificates</div><h3>Our production is <span class="serif warm">certified.</span></h3></div>
+        <div><div class="kick">Our Certificates</div><h3>Our production is <span class="serif warm">certified</span></h3></div>
         <p>Our quality, environment and occupational safety systems are internationally certified. Tap a certificate to view it in full size.</p>
       </div>
       <div class="blg-grid" id="blgGrid"></div>
@@ -1198,7 +1209,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="referanslar">
   <div class="wrap">
     <div class="kick">References</div>
-    <h2 class="sec-h">Our light,<br><span class="serif warm">all across Türkiye.</span></h2>
+    <h2 class="sec-h">Our light,<br><span class="serif warm">all across Türkiye</span></h2>
     <div class="big3">
       <div><div class="n" data-n="18" data-s="+">0</div><div class="l">Municipality</div></div>
       <div><div class="n" data-n="13" data-s="+">0</div><div class="l">Construction company</div></div>
@@ -1214,7 +1225,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
 <section id="projeler">
   <div class="wrap">
     <div class="pj-top">
-      <div><div class="kick">Our projects</div><h2 class="sec-h">On site,<br><span class="serif warm">glowing at night.</span></h2>
+      <div><div class="kick">Our projects</div><h2 class="sec-h">On site,<br><span class="serif warm">glowing at night</span></h2>
         <p class="sub">From Nation’s Gardens to airports, from palaces to residential complexes. Tap a project to see its photos and the products used.</p></div>
       <div class="pj-f" id="pjF" role="tablist">
         <button class="on" data-f="hepsi">All</button><button data-f="park">Municipality and park</button><button data-f="kamu">Public and commercial</button><button data-f="konut">Residential</button>
@@ -1238,7 +1249,7 @@ html.zn:not(.gunduz) #katalog,html.zn:not(.gunduz) #uretim,html.zn:not(.gunduz) 
   <div class="wrap">
     <div class="ct">
       <div class="l">
-        <h2>Let’s talk about<br><span class="serif">your project.</span></h2>
+        <h2>Let’s talk about<br><span class="serif">your project</span></h2>
         <p>Contact us for product selection, lighting calculations, custom dimensions and colours. We will prepare your quote within 1 business day.</p>
         <ul><li>Project-specific product recommendation</li><li>Custom dimensions, colours and crests</li><li>Experience with Nation’s Gardens, municipalities and the private sector</li><li>ISO 9001 and CE certified production</li></ul>
         <a class="wa-gnc wa-lnk" href="https://wa.me/905317447784?text=Hello%2C%20we%20would%20like%20a%20quote%20for%20our%20project.%20I%20will%20send%20drawings%20/%20photos." target="_blank" rel="noopener">Send your project via WhatsApp</a>
