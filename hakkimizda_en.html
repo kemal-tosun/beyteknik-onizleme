@@ -767,6 +767,17 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 @media (max-width:640px){.hk-iki,.hk-dort,.hk-yol{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 <script>try{if(localStorage.getItem("tema")==="gunduz")document.documentElement.classList.add("gunduz")}catch(e){}</script>
+<style id="unslop">
+/* unslop deneme: buyuk harf + genis aralikli etiketler cumle duzenine */
+.kick,.pc .use,.kt-baslik .n,.zh-kw,.km h4,.fcols h5,form label,.pj .ic small,.spec th,.hint,.stage .tag,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn,.kc .kyok small,.km th{text-transform:none!important;letter-spacing:.01em!important}
+.kick,.pc .use,.kt-baslik .n,.km h4,.fcols h5,.pj .ic small,.ln-et,.ln-g>b,.kc.oz-lin .oz-k,.kc.oz-lin .oz-a,.vt-tx .et,.vt-pn figcaption,.zbtn{font-weight:500!important}
+.kick{font-size:.875rem!important}.pc .use{font-size:.8125rem!important}.zh-kw{font-size:15px!important}
+/* parlayan ve dolasan yazi efekti kapali */
+.shiny{animation:none!important;background:none!important;color:var(--amber)!important}
+/* her seye hareket yerine yalniz renk ve kenar */
+.rq span,.pick button,.pj-f button{transition:color .2s,background-color .2s,border-color .2s!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <nav id="nav">
@@ -788,14 +799,13 @@ html.gunduz nav ul a.aktif{color:#c47a12}
     <li><a href="en.html#projeler">Projects</a></li>
   </ul>
   <div class="nav-sag"><a class="tema-btn dil-btn" href="hakkimizda.html" hreflang="tr" lang="tr" aria-label="Türkçe">TR</a><button class="tema-btn" id="temaBtn" aria-label="Night / day mode"><svg class="ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
-  <a href="en.html#teklif" class="btn pri">Request a quote <span class="ar">→</span></a>
   <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button></div>
 </nav>
 
 <header class="hk-ust">
   <div class="wrap">
     <div class="kick">About us</div>
-    <h1><span id="yilYazi">18</span> years of<br><span class="serif warm">designing light for cities.</span></h1>
+    <h1><span id="yilYazi">18</span> years of<br><span class="serif warm">designing light for cities</span></h1>
     <p class="lead">As BeyTeknik Lighting, since 2008 we have been designing and manufacturing outdoor lighting poles and bollards for parks, streets, squares, and living spaces at our own facility in Nilüfer, Bursa.</p>
   </div>
 </header>
@@ -821,13 +831,13 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 <section class="hk-sec">
   <div class="wrap">
     <div class="kick">Mission and vision</div>
-    <h2>Why we exist,<br><span class="serif warm">where we are going.</span></h2>
+    <h2>Why we exist,<br><span class="serif warm">where we are going</span></h2>
     <div class="hk-iki">
       <div class="hk-kart rv"><div class="et">Our mission</div>
-        <h3>Providing cities with safe, efficient, and beautiful light.</h3>
+        <h3>Providing cities with safe, efficient, and beautiful light</h3>
         <p>Designing and manufacturing long-lasting lighting products for parks, streets and squares. Simplifying work for municipalities and project owners with custom dimensions, colours and light distributions for every project.</p></div>
       <div class="hk-kart rv"><div class="et">Our vision</div>
-        <h3>To be Turkey’s top-of-mind domestic brand in outdoor lighting.</h3>
+        <h3>To be Turkey’s top-of-mind domestic brand in outdoor lighting</h3>
         <p>To be a preferred manufacturer in Turkey and abroad with its design, quality, and prompt support, contributing to the identity of cities through light.</p></div>
     </div>
   </div>
@@ -836,7 +846,7 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 <section class="hk-sec">
   <div class="wrap">
     <div class="kick">Our Values</div>
-    <h2>Four things<br><span class="serif warm">that define us.</span></h2>
+    <h2>Four things<br><span class="serif warm">that define us</span></h2>
     <div class="hk-dort">
       <div class="hk-kart rv"><div class="no">01</div><h3>Domestic production</h3><p>Every step from design to dispatch takes place at our facility in Bursa. Our production is 100% domestic.</p></div>
       <div class="hk-kart rv"><div class="no">02</div><h3>Customised for you</h3><p>Custom dimensions, RAL colours, crests and inscriptions are standard for us.</p></div>
@@ -849,7 +859,7 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 <section class="hk-sec">
   <div class="wrap">
     <div class="kick">Our journey</div>
-    <h2>From a small workshop<br><span class="serif warm">to the light of cities.</span></h2>
+    <h2>From a small workshop<br><span class="serif warm">to the light of cities</span></h2>
     <ol class="hk-yol">
       <li class="rv"><b>2008</b><span>We manufactured our first poles in a small workshop in Bursa.</span></li>
       <li class="rv"><b>Our own design</b><span>We began designing our own products. Today we have six product families.</span></li>
@@ -862,7 +872,7 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 <section class="hk-sec">
   <div class="wrap">
     <div class="kick">What we do</div>
-    <h2>Every part<br><span class="serif warm">under one roof.</span></h2>
+    <h2>Every part<br><span class="serif warm">under one roof</span></h2>
     <p class="hk-p rv">Modern park and garden poles, road poles, square poles and bollards are our core products. We also manufacture wall lights, wall-top luminaires, indoor and outdoor luminaires.</p>
     <div class="hk-atl rv"><span>Source</span><span>Electricity</span><span>Machined production</span><span>Electrostatic powder coating</span><span>Quality control and dispatch</span><span>ISO 9001</span><span>CE</span><span>100% made in Türkiye</span></div>
   </div>
@@ -871,7 +881,7 @@ html.gunduz nav ul a.aktif{color:#c47a12}
 <section class="hk-son">
   <div class="wrap rv">
     <div class="kick">Let’s work together</div>
-    <h2 style="margin-top:1rem">Let’s talk about<br><span class="serif warm">your project.</span></h2>
+    <h2 style="margin-top:1rem">Let’s talk about<br><span class="serif warm">your project</span></h2>
     <p>We enjoy collaborating with municipalities, landscape and architecture practices, electrical contractors and builders right from the project phase.</p>
     <div class="acts"><a href="en.html#teklif" class="btn pri">Request a quote <span class="ar">→</span></a><a href="en.html#urunler" class="btn gh">View products</a><a href="tel:+902242154544" class="btn gh">+90 224 215 45 44</a></div>
   </div>
